@@ -1,9 +1,7 @@
 @import url("");
 :root {
   /*size*/
-  --size-icon_logo : 48px;
-
-  /*font-size*/
+  --size_icon_logo : 48px;
   --size_register-succes : 48px; /*register succes - 가입 환영*/
   --size_title : 34px; /*Write & Detail - 책 제목*/
   --size_info : 24px; /*Sign up - 왼쪽 인용구 / register success - 가입 안내*/
@@ -20,7 +18,7 @@
   /*color*/
   --color_highlight : #4FBA80;
   --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
-  --color_gradient :  #A6CBB7;
+  --color_gradient :  #A6CBB7; /*gradient*/
   --color_background : #F7F7F7;
   --color_white : #FFFFFF;
   --color_black : #000000;
@@ -43,7 +41,8 @@ html {
 }
 
 body {
-  background-color: rgb(235, 235, 235);
+  margin: 0;
+  background: linear-gradient(var(--color_gradient), var(--color_background));
 }
 
 .container {
@@ -63,12 +62,6 @@ header {
 
 #logo .site-name {
   margin-left: 12px;
-}
-
-header {
-  align-items: center;
-  width: 100%;
-  background-color: rgb(159, 187, 179);
 }
 
 .grid-view-contents { 

@@ -40,34 +40,46 @@
         </header>
         
         <div class="category">
-            <div class="searching-items">
-                <label for="searching">책 찾아보기</label>
+            <div id="searching-menu">
+                <img src="icon/search.svg">
+                <label for="searching" class="search">책 찾아보기</label>
+            </div>     
+            <div class="searching-input">
                 <input type="" id="searching" placeholder="찾는 책의 제목/키워드를 입력하세요">
                 <button type="reset">X</button><!--쓴것 초기화 button-->
-            </div>     
+            </div>
             <!--버튼 누르면 색 변하도록 js작업하기-->
-            <h3>필터</h3>
-            <span>국내/외국</span>
+            <div id="filter-menu">
+                <img src="icon/filter.svg">
+                <div class="filter">필터</div>
+            </div>
+            <span class="category-menu">국내/외국</span>
             <div class="book-from">
-                <button type="button">국내도서</button>
-                <button type="button">외국도서</button>
+                <button class="domestic" type="button">국내도서</button>
+                <button class="overseas" type="button">외국도서</button>
             </div>
-            <span>분야</span>
+            <span class="category-menu">분야</span>
             <div class="book-type">
-                <button type="button">예술</button>
-                <button type="button">역사</button>
-                <button type="button">인문</button>
-                <button type="button">비문학</button>
-                <button type="button">경제</button>
-                <button type="button">정치</button>
-                <button type="button">영어</button>
-                <button type="button">과학</button>
-                <button type="button">여성학</button>
-                <button type="button">고전</button> <!--더 적어야함-->
+                <button class="field" type="button">소설</button>
+                <button class="field" type="button">예술</button>
+                <button class="field" type="button">역사/문화</button>
+                <button class="field" type="button">인문</button>
+                <button class="field" type="button">비문학</button>
+                <button class="field" type="button">경제/경영</button>
+                <button class="field" type="button">정치</button>
+                <button class="field" type="button">영어</button>
+                <button class="field" type="button">과학</button>
+                <button class="field" type="button">여성학</button>
+                <button class="field" type="button">고전</button> 
+                <button class="field" type="button">자기계발</button> 
+                <button class="field" type="button">취미/실용</button> 
+                <button class="field" type="button">컴퓨터</button> 
+                <button class="field" type="button">어린이</button> 
+                <!--더 적어야함-->
             </div>
-            <div class="">
-                <button type="button">찾기</button>
-                <button type="reset">초기화</button> <!--위에서 누른것들 초기화되도록-->
+            <div class="category-action">
+                <button class="filter-search" type="button">찾기</button>
+                <button class="initialize" type="reset">초기화</button> <!--위에서 누른것들 초기화되도록-->
             </div>
         </div>
         
@@ -75,18 +87,14 @@
         <div class="array">
             <form action="" method="GET"> <!--이부분은 어떤 태그를 써야할지 모르겠다 텍스트로 이루어진 버튼으로 봐야하는건지..-->
                 <select name="" id="trending">
-                    <option value="trending">트렌딩</option>
+                    <option value="trending">인기</option>
                     <option value="newest">최신</option>
                 </select>
             </form>
             <div class="view-type">
-                <form action="" method="GET">
-                    <select name="view" id="view">
-                        <option value="grid">Grid View</option> <!--css에서 icon image로 추후 변경-->
-                        <option value="line">Line View</option>
-                    </select>
-                    <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
-                </form>
+                <img src="icon/list_black.svg">
+                <img src="icon/grid_black.svg">
+                <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
             </div>
         </div>
         

@@ -8,6 +8,7 @@
   --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
   --size_comments : 16px; /*댓글*/
   --size_hashtag : 16px; /*해시태그#*/
+  --size-menu-medium : 14px;
   --size_button : 14px; /*모든 버튼*/
   --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
   --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
@@ -33,6 +34,10 @@
   
   /*margin*/
   --margin_container-side : 100px;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 button {
@@ -75,7 +80,7 @@ header {
 }
 
 header .buttons {
-  height: 48px;
+  height: 48px=;
   display: flex;
   align-items: center;
 }
@@ -98,13 +103,144 @@ header button {
 }
 
 .category {
+  width: 303px;
   grid-column: 1 / 2;
   grid-row: 2 / 4;
 }
 
+#searching-menu {
+  display: flex;
+  align-items: center;
+  height: 27px;
+}
+
+#searching-menu img{
+  width: 18px;
+  height: 18px;
+  padding: 3px;
+}
+
+.searching-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  border: 1px solid var(--color_black);
+  padding: 16px;
+  margin-top: 15px;
+  background-color: var(--color_white);
+}
+
+#searching {
+  width: 100%;
+  border: none;
+  background-color: var(--color_white);
+}
+
+#searching-menu .search {
+  font-size: var(--size_menu);
+}
+
+#filter-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 42px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color_black);
+  margin-top: 37px;
+}
+
+#filter-menu img {
+  height: 16px;
+}
+
+#filter-menu .filter {
+  font-size: var(--size_menu);
+}
+
+.category .category-menu {
+  display: block;
+  margin: 15px 0px;
+  font-size: var(--size-menu-medium);
+}
+
+.book-from {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color_black);
+  font-size: var(--size_button);
+}
+
+.book-from .domestic {
+  width: 95px;
+  padding: 11px 10px;
+  border: 1px solid var(--color_black);
+  margin-right: 9px;
+  background-color: var(--color_white);
+}
+
+.book-from .overseas {
+  width: 95px;
+  padding: 11px 10px;
+  border: 1px solid var(--color_black);
+  background-color: var(--color_white);
+}
+
+.book-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: var(--size_button);
+}
+
+.book-type .field {
+  width: 95px;
+  border: solid 1px var(--color_black);
+  padding: 11px 10px;
+  margin: 4px 0px;
+  background-color: var(--color_white);
+}
+
+.category-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.category-action .filter-search {
+  width: 222px;
+  height: 40px;
+  color: var(--color_white);
+  border: 1px solid var(--color_black);
+  background-color: var(--color_highlight);
+}
+
+.category-action .initialize {
+  width: 72px;
+  height: 40px;
+  border: 1px solid var(--color_black);
+  background-color: rgb(0, 0, 0, 0.08);
+}
+
 .array {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   grid-column: 2 /3;
   grid-row: 2 / 3;
+}
+
+.view-type {
+  opacity: 0.38;
+}
+
+.view-type img{
+  width: 24px;
+  height: 24px; 
 }
 
 .main {

@@ -17,8 +17,7 @@
                 <!--책단지 아이콘-->
                 <img class="site-name" src="icon/책단지.svg" alt="책단지-icon">
             </div>
-    
-            <div class="buttons"><!--write버튼, 회원가입버튼, login버튼 묶음-->
+            <nav><!--write버튼, 회원가입버튼, login버튼 묶음-->
                 <button type="button" class="login">로그인</button>
                 <!-- 
                     <div class="login-info">
@@ -36,10 +35,10 @@
                 <!--회원가입 페이지 이동-->
                 <button type="write" id="write-button">글쓰기</button>
                 <!--글쓰기 페이지 이동-->
-            </div>
+            </nav>
         </header>
         
-        <div class="category">
+        <div id="category">
             <div id="searching-menu">
                 <img src="icon/search.svg">
                 <label for="searching" class="search">책 찾아보기</label>
@@ -84,13 +83,11 @@
         </div>
         
         <!--인기글, 최신순 탭 + 그리드&리스트 뷰-->
-        <div class="array">
-            <form action="" method="GET"> <!--이부분은 어떤 태그를 써야할지 모르겠다 텍스트로 이루어진 버튼으로 봐야하는건지..-->
-                <select name="" id="trending">
-                    <option value="trending">인기</option>
-                    <option value="newest">최신</option>
-                </select>
-            </form>
+        <div id="array">
+            <div class="content-array">
+                <div class="best">인기</div>
+                <div class="latest">최신</div>
+            </div>
             <div class="view-type">
                 <img src="icon/list_black.svg">
                 <img src="icon/grid_black.svg">

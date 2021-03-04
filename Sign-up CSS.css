@@ -1,0 +1,206 @@
+@import url("");
+:root {
+  /*size*/
+  --size_icon_logo : 48px;
+  --size_register-succes : 48px; /*register succes - 가입 환영*/
+  --size_title : 34px; /*Write & Detail - 책 제목*/
+  --size_info : 24px; /*Sign up - 왼쪽 인용구 / register success - 가입 안내*/
+  --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
+  --size_comments : 16px; /*댓글*/
+  --size_hashtag : 16px; /*해시태그#*/
+  --size-menu-medium : 14px;
+  --size_button : 14px; /*모든 버튼*/
+  --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
+  --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
+  --size_signup-input : 12px; /*Sign up - input박스 안에 들어가는 입력값, 개인정보 동의 안내*/
+
+
+
+  /*color*/
+  --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
+  --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
+  --color_gradient :  #A6CBB7; /*gradient*/
+  --color_background : #F7F7F7;
+  --color_white : #FFFFFF;
+  --color_black : #000000;
+
+  /*opacity(투명도, high가 가장 진함)*/
+  --opacity_high : 0.87;
+  --opacity_medium : 0.6;
+  --opacity_low : 0.38;
+
+  /*padding*/
+  --padding_container-top: 30px;
+  
+  /*margin*/
+  --margin_container-side : 100px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.login, .sign-up {
+  border-style: none;
+  background: none;
+}
+
+
+a {
+  color: none;
+}
+
+html {
+  font-family: "",;
+  color: #424952;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
+}
+
+.container {
+  display: grid;
+
+  grid-template-columns: 200px 500px;
+  grid-gap: 1rem;
+  padding-top: 50px;
+  margin: 50px;
+  align-items: center;
+
+}
+
+header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+#logo {
+  height: 48px;
+  color: var(--color_primary-variant1);
+}
+
+header .buttons {
+  height: 48px=;
+  display: flex;
+  align-items: center;
+}
+
+header button {
+  margin-left: 20px;
+  color: var(--color_logo);
+}
+
+#write-button {
+  width: 100px;
+  height: 40px;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
+  border-radius: 50px;
+  border-style: none;
+}
+
+#logo .site-name {
+  margin-left: 12px;
+}
+
+#id-button, #nickname-button {
+  width: 100px;
+  height: 35px;
+  border-color: var(--color_highlight);
+  color: var(--color_highlight);
+  border-radius: 3px;
+  border-style: solid;
+  background-color: white;
+  border-width: 1px;
+
+}
+
+#nickname, #id {
+  width: 380px;
+  margin-right: 15px;
+}
+#submit-button {
+  width: 500px;
+  height: 35px;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
+  border-radius: 3px;
+
+}
+
+
+
+#agreebox {
+  background-color: rgb(240, 240, 240);
+  border-color: rgb(180, 180, 180);
+  border-style: solid;
+  border-radius: 3px;
+  font-size: 13px;
+  padding: 13px;
+  border-width: 1px;
+}
+
+.saying-logo{
+  height: 180px;
+  margin: 20px;
+
+}
+
+.category {
+
+  grid-column: 1/2;
+  grid-row: 2/2;
+
+  line-height: 25px;
+}
+
+.category #saying {
+  padding-bottom: 60px;
+
+  
+}
+
+.category #quote {
+  font-size: 50px;
+}
+
+
+.main {
+  grid-column: 2 / 2;
+  grid-row: 2 / 2;
+  
+}
+
+form { 
+  align-items:center;
+  background-color: rgb(240, 240, 240);
+  background-color: var(--color_white);
+  margin: 50px;
+  padding: 50px;
+  width: 600px;
+  font-size: 13px;
+  line-height: 25px;
+} 
+
+input {
+  height: 35px;
+  width: 340px;
+  background-color:rgb(240, 240, 240);
+  border-radius: 3px;
+  border-color: rgb(180, 180, 180);
+  font-size: 13px;
+  padding: 8px;
+  border-style: solid;
+  color:rgb(240, 240, 240);
+  border-width: 1px;
+  
+}
+
+#password {
+  width: 500px;
+}

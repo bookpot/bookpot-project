@@ -138,6 +138,11 @@ header nav .sign-up:hover::after {
   -webkit-transition: transform .3s;
 }
 
+header nav #write-button:hover {
+  box-shadow: 0px 0px 15px #52D384;
+  transition: box-shadow .5s;
+}
+
 header button {
   margin-left: 20px;
   color: var(--color_logo);
@@ -289,16 +294,16 @@ header nav #write-button {
   grid-row: 2 / 3;
 }
 
-.content-array {
+#array .content-array {
   display: flex;
 }
 
-#array .best {
+#array .content-array .best {
   width: 100px;
   text-align: center;
 }
 
-#array .latest {
+#array .content-array .latest {
   width: 100px;
   text-align: center;
 }
@@ -315,6 +320,10 @@ header nav #write-button {
 .main {
   grid-column: 2 / 3;
   grid-row: 3 / 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  grid-template-rows: repeat(auto-fill, minmax(220px, auto));
+  gap: 24px;
 }
 
 .grid-view-contents { 

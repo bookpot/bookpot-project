@@ -4,21 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>책단지</title>
     <link rel="stylesheet" href="Sign-up CSS.css">
 </head>
 
 <body>
     <div class="container">
-        <header>
+        <div class="header">
             <div id="logo">
                 <!-- 책 아이콘 -->
                 <img src="icon/logo.svg" alt="logo-icon"> <!--로고 이미지 작업 필요-->
                 <!--책단지 아이콘-->
                 <img class="site-name" src="icon/책단지.svg" alt="책단지-icon">
             </div>
-    
-            <div class="buttons"><!--write버튼, 회원가입버튼, login버튼 묶음-->
+            <nav><!--write버튼, 회원가입버튼, login버튼 묶음-->
                 <button type="button" class="login">로그인</button>
                 <!-- 
                     <div class="login-info">
@@ -36,11 +36,11 @@
                 <!--회원가입 페이지 이동-->
                 <button type="write" id="write-button">글쓰기</button>
                 <!--글쓰기 페이지 이동-->
-            </div>
-        </header>
+            </nav>
+        </div>
         
-        <div class="category">
-
+        
+        <div class="side">
                 <div id="quote">
                     "<br>
                 </div>
@@ -50,13 +50,13 @@
                 -<br>
                 김유정<br><br><br>
                 <img class="saying-logo" src="icon/logo.svg" alt="logo-icon">
-            
         </div>
         
         
-        <section class="main">
+        <div class="main">
             <form action="">
-                <h2>회원가입</h2><br>
+                <h2>회원가입</h2>
+                <div id="green-box"></div>
                 <!--닉네임 입력-->
                 <p>
                     <label for="nickname">닉네임</label><br>
@@ -96,7 +96,7 @@
                     <!--모든 항목 작성완료시 활성화되도록 해야함-->
                 </p>
             </form>
-        </section>
+        </div>
     </div>
 
 </body>

@@ -1,15 +1,14 @@
 @import url("");
 :root {
   /*size*/
-  --size-icon_logo : 48px;
-
-  /*font-size*/
+  --size_icon_logo : 48px;
   --size_register-succes : 48px; /*register succes - 가입 환영*/
   --size_title : 34px; /*Write & Detail - 책 제목*/
   --size_info : 24px; /*Sign up - 왼쪽 인용구 / register success - 가입 안내*/
   --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
   --size_comments : 16px; /*댓글*/
   --size_hashtag : 16px; /*해시태그#*/
+  --size-menu-medium : 14px;
   --size_button : 14px; /*모든 버튼*/
   --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
   --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
@@ -18,9 +17,9 @@
 
 
   /*color*/
-  --color_highlight : #4FBA80;
+  --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
   --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
-  --color_gradient :  #A6CBB7;
+  --color_gradient :  #A6CBB7; /*gradient*/
   --color_background : #F7F7F7;
   --color_white : #FFFFFF;
   --color_black : #000000;
@@ -37,38 +36,294 @@
   --margin_container-side : 100px;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+button {
+  border-style: none;
+  background: none;
+}
+
+a {
+  color: none;
+}
+
 html {
   font-family: "",;
   color: #424952;
 }
 
 body {
-  background-color: rgb(235, 235, 235);
+  margin: 0;
+  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
 }
 
 .container {
   display: grid;
+  grid-template-rows: 85px 85px 1fr;
+  grid-template-columns: 435px 1fr;
   padding-top: var(--padding_container-top);
   margin: 0 var(--margin_container-side);
 }
 
 header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
   display: flex;
   justify-content: space-between;
 }
 
-#logo {
+header #logo {
+  height: 48px;
   color: var(--color_primary-variant1);
 }
 
-#logo .site-name {
+header #logo .site-name {
   margin-left: 12px;
 }
 
-header {
+header nav {
+  height: 48px;
+  display: flex;
   align-items: center;
+}
+
+header nav .login {
+  padding: 7px 6px 1px 6px;
+}
+
+header nav .sign-up {
+  padding: 7px 6px 1px 6px;
+}
+
+/*header hover효과*/
+header nav .login::after {
+  margin-top: 5px;
+  display: block;
   width: 100%;
-  background-color: rgb(159, 187, 179);
+  height: 2px;
+  content: "";
+  background-color: var(--color_highlight);
+  transform: translateX(0) scaleX(0);
+  -webkit-transform: translateX(0) scaleX(0);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+header nav .login:hover::after {
+  transform: translateX(0) scaleX(1.1);
+  -webkit-transform: translateX(0) scaleX(1.1);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+header nav .sign-up::after {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background-color: var(--color_highlight);
+  transform: translateX(0) scaleX(0);
+  -webkit-transform: translateX(0) scaleX(0);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+header nav .sign-up:hover::after {
+  transform: translateX(0) scaleX(1.1);
+  -webkit-transform: translateX(0) scaleX(1.1);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+header nav #write-button:hover {
+  box-shadow: 0px 0px 15px #52D384;
+  transition: box-shadow .5s;
+}
+
+header button {
+  margin-left: 20px;
+  color: var(--color_logo);
+}
+
+header nav #write-button {
+  width: 100px;
+  height: 40px;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
+  border-radius: 50px;
+}
+
+
+/*카테고리 영역*/
+#category {
+  width: 303px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+  margin-top: 27px;
+}
+
+#searching-menu {
+  display: flex;
+  align-items: center;
+  height: 27px;
+}
+
+#searching-menu img{
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+}
+
+.searching-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  border: 1px solid var(--color_black);
+  padding: 16px;
+  margin-top: 15px;
+  background-color: var(--color_white);
+}
+
+#searching {
+  width: 100%;
+  border: none;
+  background-color: var(--color_white);
+}
+
+#searching-menu .search {
+  font-size: var(--size_menu);
+}
+
+#filter-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 42px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--color_black);
+  margin-top: 37px;
+}
+
+#filter-menu img {
+  width: 24px;
+  height: 24px;
+  padding: 3px;
+}
+
+#filter-menu .filter {
+  font-size: var(--size_menu);
+}
+
+#category .category-menu {
+  display: block;
+  margin: 15px 0px;
+  font-size: var(--size-menu-medium);
+}
+
+.book-from {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color_black);
+  font-size: var(--size_button);
+}
+
+.book-from .domestic {
+  width: 95px;
+  padding: 11px 10px;
+  border: 1px solid var(--color_black);
+  margin-right: 9px;
+  background-color: var(--color_white);
+}
+
+.book-from .overseas {
+  width: 95px;
+  padding: 11px 10px;
+  border: 1px solid var(--color_black);
+  background-color: var(--color_white);
+}
+
+.book-type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: var(--size_button);
+}
+
+.book-type .field {
+  width: 95px;
+  border: solid 1px var(--color_black);
+  padding: 11px 10px;
+  margin: 4px 0px;
+  background-color: var(--color_white);
+}
+
+.category-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 32px;
+}
+
+.category-action .filter-search {
+  width: 222px;
+  height: 40px;
+  color: var(--color_white);
+  border: 1px solid var(--color_black);
+  background-color: var(--color_highlight);
+}
+
+.category-action .initialize {
+  width: 72px;
+  height: 40px;
+  border: 1px solid var(--color_black);
+  background-color: rgb(0, 0, 0, 0.08);
+}
+
+/*콘텐츠 영역*/
+#array {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-column: 2 /3;
+  grid-row: 2 / 3;
+}
+
+#array .content-array {
+  display: flex;
+}
+
+#array .content-array .best {
+  width: 100px;
+  text-align: center;
+}
+
+#array .content-array .latest {
+  width: 100px;
+  text-align: center;
+}
+
+.view-type {
+  opacity: 0.38;
+}
+
+.view-type img{
+  width: 24px;
+  height: 24px; 
+}
+
+.main {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+  grid-template-rows: repeat(auto-fill, minmax(220px, auto));
+  gap: 24px;
 }
 
 .grid-view-contents { 

@@ -15,6 +15,7 @@
   --size_signup-input : 12px; /*Sign up - input박스 안에 들어가는 입력값, 개인정보 동의 안내*/
 
 
+
   /*color*/
   --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
   --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
@@ -70,14 +71,14 @@ header {
   display: flex;
   flex-direction: column;
   border-top: solid 2px rgb(112, 112, 112);
-  border-bottom: solid 1px rgb(201, 201, 201);
+  /*border-bottom: solid 1px rgb(201, 201, 201);*/
 }
 
 .book-info2 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   border-top: solid 1px rgb(201, 201, 201);
-  padding: 15px 0;
+  padding: 15px 0px 14px 0px;
 }
 
 .book-info2 span {
@@ -92,9 +93,12 @@ header {
   font-size: 13px;
 }
 
-.book-info2-2,
-.book-info2-3  {
-  padding-left: 20px;
+.book-info2-2 {
+  padding-left: 14px;
+}
+
+.book-info2-3 {
+  padding-left: 27px;
 }
 
 .book-name {
@@ -211,30 +215,29 @@ header form button:first-child {
   margin-bottom: 20px;
 }
 
-#input {
- /* display: flex;*/
+/*#input {
+  display: flex;
   flex-grow: 1;
+  width: 900px;
   height: 130px; 
   padding-left: 20px;
   padding-bottom: 60px; 
   border: none;
-  flex-wrap: wrap;
-  /*white-space:normal;*/
-  overflow: auto;
-}
+  white-space:normal;
+}*/
 
-.comment-write form {
-  display: flex;
+textarea {
   background-color: #fff;
-  padding-left: 300;
+  /*padding-left: 300;
   padding-right: 300;
+  display: flex;*/
   border-radius: 5px;
   border: none;
-  flex-wrap: wrap;
-  overflow: auto;
-  
+  width: 100%;
+  height: 140px;
+  padding-top: 20px;
+  padding-left: 20px;
 }
-/*댓글 글자가 넘어갈때 밑으로 줄바꿈되게 설정해야함*/
 
 .comment-write {
   position: relative;
@@ -291,14 +294,31 @@ header form button:first-child {
   margin-right: 15px;
   font-size: 16px;
 }
+
+/*줄 관련*/
 hr {
-  border: 1px solid #dfdfdf
+  /*border: 1px thin #aaaaaa;
+  height: 0.3px;*/
+  background-color:rgb(197, 196, 196);
+  border: 0; /*hr에는 border를 0으로 줘야 미세한 두줄을 없앨수있다*/
+}
+
+.book-info hr {
+  width: 240px;
+  margin: 0;
+}
+.underbar {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  
 }
 
 /*폰트*/
 
 .content h1 {
   font-size: 29px;
+  font-weight: 300;
 }
 .comments p {
   font-size: 14px;

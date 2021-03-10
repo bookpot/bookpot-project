@@ -1,0 +1,339 @@
+@import url("");
+:root {
+  /*size*/
+  --size_icon_logo : 48px;
+  --size_register-succes : 48px; /*register succes - 가입 환영*/
+  --size_title : 34px; /*Write & Detail - 책 제목*/
+  --size_info : 24px; /*Sign up - 왼쪽 인용구 / register success - 가입 안내*/
+  --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
+  --size_comments : 16px; /*댓글*/
+  --size_hashtag : 16px; /*해시태그#*/
+  --size-menu-medium : 14px;
+  --size_button : 14px; /*모든 버튼*/
+  --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
+  --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
+  --size_signup-input : 12px; /*Sign up - input박스 안에 들어가는 입력값, 개인정보 동의 안내*/
+
+
+
+  /*color*/
+  --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
+  --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
+  --color_gradient :  #A6CBB7; /*gradient*/
+  --color_background : #F7F7F7;
+  --color_white : #FFFFFF;
+  --color_black : #000000;
+
+  /*opacity(투명도, high가 가장 진함)*/
+  --opacity_high : 0.87;
+  --opacity_medium : 0.6;
+  --opacity_low : 0.38;
+
+  /*padding*/
+  --padding_container-top: 30px;
+  
+  /*margin*/
+  --margin_container-side : 100px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
+}
+
+header {
+  /*display: grid;
+  grid-template-rows: 85px 1fr;
+  grid-template-columns: 2fr 7fr 2fr;
+  padding-top: var(--padding_container-top);
+  margin: 0 var(--margin_container-side); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: var(--padding_container-top);
+  margin: 0 var(--margin_container-side);
+  margin-bottom: 90px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-left: 350px;
+  margin-right: 350px;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+  border-top: solid 2px rgb(112, 112, 112);
+  /*border-bottom: solid 1px rgb(201, 201, 201);*/
+}
+
+.book-info2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-top: solid 1px rgb(201, 201, 201);
+  padding: 15px 0px 14px 0px;
+}
+
+.book-info2 span {
+  display: inline-flexbox;
+  flex-direction:row;
+  align-items: center;
+  background-color: #fff;
+  padding: 6px 11px;
+  border: solid rgb(219, 219, 219) 1px;
+  border-radius: 3px;
+  color: var(--color_highlight);
+  font-size: 13px;
+}
+
+.book-info2-2 {
+  padding-left: 14px;
+}
+
+.book-info2-3 {
+  padding-left: 27px;
+}
+
+.book-name {
+  display: flex;
+  flex-direction:row;
+  height: 50px;
+  font-size: 16px;
+  align-items: center;
+}
+
+
+.item {
+  margin-right: 30px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 50px;
+  padding: 50px 60px;
+  height: 700px;
+  border-radius: 5px;
+}
+h3,
+h4 {
+  margin: 0;
+}
+
+button {
+  border-style: none;
+  background: none;
+}
+ .logo {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: row;
+}
+
+#logo-text {
+  margin-left: 12px;
+}
+
+#header-buttons {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*header form {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}*/
+
+header form button:first-child {
+  margin-right: 20px;
+  color: var(--color_logo);
+}
+
+#submit-button{
+  width: 100px;
+  height: 40px;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
+  border-radius: 50px;
+}
+
+.content-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content-info-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#buttons {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.profile-img {
+  display: flex;
+  background-color: rgb(167, 167, 167);
+  width: 28px;
+  height: 28px;
+  border-radius: 50px;
+  margin-right: 15px;
+}
+
+.content-info-1 h3 {
+  margin-right: 20px;
+}
+
+#hashtag {
+  margin-top: 20px;
+  border-top: solid 1px rgb(201, 201, 201);
+  border-bottom: solid 1px rgb(201, 201, 201);
+  color: var(--color_highlight);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/*댓글창*/
+
+.comment-write h4 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/*#input {
+  display: flex;
+  flex-grow: 1;
+  width: 900px;
+  height: 130px; 
+  padding-left: 20px;
+  padding-bottom: 60px; 
+  border: none;
+  white-space:normal;
+}*/
+
+textarea {
+  background-color: #fff;
+  /*padding-left: 300;
+  padding-right: 300;
+  display: flex;*/
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  height: 140px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.comment-write {
+  position: relative;
+}
+
+.comment-write form button {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 80px;
+  height: 30px;
+  background-color: var(--color_highlight);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.comment-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.comment-2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 33px;
+}
+.comment-3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 50px;
+}
+.comment-1 + p {
+  margin-top: 10px;
+  margin-left: 45px;
+  padding-bottom: 20px;
+}
+
+.comment-2 + p {
+  margin-top: 10px;
+  margin-left: 45px;
+}
+
+.comment-3 + p {
+  margin-top: 10px;
+  margin-left: 95px;
+}
+
+.comments h3 {
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+/*줄 관련*/
+hr {
+  /*border: 1px thin #aaaaaa;
+  height: 0.3px;*/
+  background-color:rgb(197, 196, 196);
+  border: 0; /*hr에는 border를 0으로 줘야 미세한 두줄을 없앨수있다*/
+}
+
+.book-info hr {
+  width: 240px;
+  margin: 0;
+}
+.underbar {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  
+}
+
+/*폰트*/
+
+.content h1 {
+  font-size: 29px;
+  font-weight: 300;
+}
+.comments p {
+  font-size: 14px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+.comments h4 {
+  color: #7c7c7c;
+  font-size: 15px;
+  
+}
+
+* {
+  font-weight: 400;
+}

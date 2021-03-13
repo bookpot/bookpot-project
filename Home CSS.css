@@ -26,7 +26,7 @@
 
   /*opacity(투명도, high가 가장 진함)*/
   --opacity_high : 0.87;
-  --opacity_medium : 0.6;
+  --opacity_medium : 0.68;
   --opacity_low : 0.38;
 
   /*padding*/
@@ -60,7 +60,7 @@ body {
   background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
 }
 
-body.login-tab::after {
+body.login-form-show::after {
   content: "";
   position: absolute;
   top: 0;
@@ -85,12 +85,12 @@ header {
   justify-content: space-between;
 }
 
-header #logo {
+header .logo {
   height: 48px;
   color: var(--color_primary-variant1);
 }
 
-header #logo .site-name {
+header .logo .site-name {
   margin-left: 12px;
 }
 
@@ -117,16 +117,59 @@ header #login-form-container {
   height: 100vh;
 }
 
+/* login-form 관련 css */
 header #login-form-container .login-form {
-  display: none;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
   width: 700px;
   height: 400px;
-  margin: -200px 0 0 - 350px;
+  border-radius: 10px;
+  padding: 20px 40px;
+  margin: -200px 0 0 -350px;
   background-color: var(--color_background);
   z-index: 1;
+}
+
+header #login-form-container .login-form .logo{
+  display: flex;
+  align-items: center;
+  align-self: center;
+  margin-bottom: 20px;
+}
+
+header #login-form-container .login-form .logo img{
+  height: 30px;
+}
+
+header #login-form-container .login-form .login-form-hide {
+  align-self: flex-end;
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  color: var(--color_black);
+  opacity: var(--opacity_medium);
+}
+
+header #login-form-container .login-form .login-form-hide:hover {
+  background-color: rgb(0, 0, 0, 0.08);
+  border-radius: 50px;
+}
+
+header #login-form-container .login-form input {
+  height: 40px;
+  border: 1px solid rgb(0, 0, 0, 0.08);
+  margin: 10px 0 20px 0;
+  background-color: rgb(0, 0, 0, 0.03);
+}
+
+header #login-form-container .login-form #login-form-submit {
+  height: 40px;
+  margin: 20px 0 20px 0;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
 }
 
 /*header hover효과*/

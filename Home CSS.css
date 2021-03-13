@@ -108,6 +108,27 @@ header nav .sign-up {
   padding: 7px 6px 1px 6px;
 }
 
+header #login-form-container {
+  display: none;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100vh;
+}
+
+header #login-form-container .login-form {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 400px;
+  margin: -200px 0 0 - 350px;
+  background-color: var(--color_background);
+  z-index: 1;
+}
+
 /*header hover효과*/
 header nav .login::after {
   margin-top: 5px;
@@ -343,14 +364,15 @@ header nav #write-button {
 } 
 
 
-  .grid-view-contents img {
-    width: 20%;
-    height: auto;
-  }
-  .grid-view-content,
-  .book-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-  }
+.grid-view-contents img {
+  width: 20%;
+  height: auto;
+}
+.grid-view-content,
+.book-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+}
+

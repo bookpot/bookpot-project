@@ -1,0 +1,338 @@
+@import url("");
+:root {
+  /*size*/
+  --size_icon_logo : 48px;
+  --size_register-succes : 48px; /*register succes - 가입 환영*/
+  --size_title : 34px; /*Write & Detail - 책 제목*/
+  --size_info : 24px; /*Sign up - 왼쪽 인용구 / register success - 가입 안내*/
+  --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
+  --size_comments : 16px; /*댓글*/
+  --size_hashtag : 16px; /*해시태그#*/
+  --size-menu-medium : 14px;
+  --size_button : 14px; /*모든 버튼*/
+  --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
+  --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
+  --size_signup-input : 12px; /*Sign up - input박스 안에 들어가는 입력값, 개인정보 동의 안내*/
+
+
+
+  /*color*/
+  --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
+  --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
+  --color_gradient :  #A6CBB7; /*gradient*/
+  --color_background : #F7F7F7;
+  --color_white : #FFFFFF;
+  --color_black : #000000;
+
+  /*opacity(투명도, high가 가장 진함)*/
+  --opacity_high : 0.87;
+  --opacity_medium : 0.6;
+  --opacity_low : 0.38;
+
+  /*padding*/
+  --padding_container-top: 30px;
+  
+  /*margin*/
+  --margin_container-side : 100px;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "",;
+  color: #424952;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
+}
+
+#logo {
+  height: 48px;
+  color: var(--color_primary-variant1);
+}
+
+button {
+  border-style: none;
+  background: none;
+}
+
+
+
+/*container*/
+.container {
+  display: grid;
+  grid-template-areas: 'header header'
+                       'side main';
+  padding-top: var(--padding_container-top);
+  margin: 0 var(--margin_container-side);
+  grid-template-rows: 85px 1fr;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+/*header*/
+.header {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.header #logo {
+  height: 48px;
+  color: var(--color_primary-variant1);
+}
+
+.header #logo .site-name {
+  margin-left: 12px;
+}
+
+.header nav {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.header nav .login {
+  padding: 7px 6px 1px 6px;
+}
+
+.header nav .sign-up {
+  padding: 7px 6px 1px 6px;
+}
+
+/*header hover효과*/
+.header nav .login::after {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background-color: var(--color_highlight);
+  transform: translateX(0) scaleX(0);
+  -webkit-transform: translateX(0) scaleX(0);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+.header nav .login:hover::after {
+  transform: translateX(0) scaleX(1.1);
+  -webkit-transform: translateX(0) scaleX(1.1);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+.header nav .sign-up::after {
+  margin-top: 5px;
+  display: block;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background-color: var(--color_highlight);
+  transform: translateX(0) scaleX(0);
+  -webkit-transform: translateX(0) scaleX(0);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+.header nav .sign-up:hover::after {
+  transform: translateX(0) scaleX(1.1);
+  -webkit-transform: translateX(0) scaleX(1.1);
+  transition: transform .3s;
+  -webkit-transition: transform .3s;
+}
+
+.header nav #write-button:hover {
+  box-shadow: 0px 0px 15px #52D384;
+  transition: box-shadow .5s;
+}
+
+.header button {
+  margin-left: 20px;
+  color: var(--color_logo);
+}
+
+.header nav #write-button {
+  width: 100px;
+  height: 40px;
+  background-color: var(--color_highlight);
+  color: var(--color_white);
+  border-radius: 50px;
+}
+
+
+
+
+
+
+/*imgchange*/
+
+.side {
+  margin: 70px;
+  margin-left: 180px;
+
+  
+}
+
+#preview-image {
+  width: 350px;
+  border-radius: 70%;
+  overflow: hidden;
+
+}
+
+#input-image {
+  margin-top: 40px;
+  font-size: 12px;
+  width: 330px;
+  height: 35px;
+  background-color: var(--color_highlight);
+  border-style: none;
+  color: var(--color_white);
+
+}
+
+
+#mypage-icon {
+  display: flex;
+  margin-top: 20px;
+}
+
+
+#what-i-wrote, #scrap, #comments {
+  margin: 20px;
+  text-align: center;
+}
+
+
+
+
+#mypage-icon a {
+  text-decoration: none;
+  font-size: 18px;
+  color: rgb(65, 64, 64)
+}
+
+
+
+/*main*/
+.main {
+  grid-area: main;
+  padding-right: 200px;
+  
+}
+
+#email-button, #nickname-button {
+  width: 100px;
+  height: 35px;
+  border-color: var(--color_highlight);
+  color: var(--color_highlight);
+  border-style: solid;
+  background-color: white;
+  border-width: 1px;
+  margin-bottom: 10px;
+
+}
+
+
+#nickname, #email {
+  width: 400px;
+  margin-right: 15px;
+}
+
+
+
+
+.main #green-box {
+  width: 70px;
+  height: 2px;
+  background-color: var(--color_highlight);
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+form { 
+  align-items:center;
+  background-color: var(--color_white);
+  margin: 50px;
+  padding: 20px 40px;
+  width: 600px;
+  font-size: 13px;
+  line-height: 25px;
+} 
+
+input {
+  height: 35px;
+  width: 340px;
+  background-color:rgb(240, 240, 240);
+  border-color: rgb(180, 180, 180);
+  font-size: 13px;
+  padding: 8px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+#password, #repassword {
+  width: 520px;
+}
+
+#grey-line {
+  width: 520px;
+  height: 1.5px;
+  background-color: rgb(194, 193, 193);
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+
+.upload-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  
+}
+
+#update-button {
+  font-size: 12px;
+  width: 250px;
+  height: 35px;
+  background-color:  #9dbbab;
+  border-style: none;
+  color: var(--color_white);
+} 
+
+#cancel-button {
+  font-size: 12px;
+  width: 250px;
+  height: 35px;
+  background-color: var(--color_highlight);
+  border-style: none;
+  color: var(--color_white);
+} 
+
+#logout-button {
+  font-size: 11px;
+  width: 520px;
+  height: 35px;
+  background-color: rgb(131, 131, 131);
+  border-style: none;
+  color: var(--color_white);
+}
+
+#withdrawal-button {
+  font-size: 11px;
+  width: 520px;
+  height: 35px;
+  background-color: rgb(240, 240, 240);
+  border-style: none;
+  color: rgb(131, 131, 131);
+}

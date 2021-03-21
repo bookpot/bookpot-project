@@ -8,12 +8,19 @@
   --size_menu : 20px; /*Home - 책 찾아보기, 필터, 트렌딩, 책 제목 / Write & Detail - 서명, 분야, 저자, 출판사 / Sign up - 회원가입 */
   --size_comments : 16px; /*댓글*/
   --size_hashtag : 16px; /*해시태그#*/
-  --size-menu-medium : 14px;
+  --size_menu-medium : 14px;
   --size_button : 14px; /*모든 버튼*/
   --size_list : 14px; /*Home - 리스트에 들어가는 모든 항목(분야, 제목, 저자, 작성자, 좋아요)*/
   --size_profile : 14px; /*프로필 - 이름, 작성된 날짜*/
   --size_signup-input : 12px; /*Sign up - input박스 안에 들어가는 입력값, 개인정보 동의 안내*/
-
+  /*size(Home의 grid view)*/
+  --size_grid-content-title : 18px;
+  --size_like-number :12px;
+  --size_grid-book-title : 12px;
+  --size_summary : 14px;
+  --size_write-info : 12px;
+  /* size(Home의 list view) */
+  --size_list-view : 14px;
 
 
   /*color*/
@@ -33,7 +40,7 @@
   --padding_container-top: 30px;
   
   /*margin*/
-  --margin_container-side : 100px;
+  --margin_container-side : 80px;
 }
 
 * {
@@ -43,6 +50,14 @@
 button {
   border-style: none;
   background: none;
+}
+
+button:focus {
+  border: none;
+  outline: none;
+}
+input:focus {
+  outline: none;
 }
 
 a {
@@ -57,7 +72,7 @@ html {
 body {
   position: relative;
   margin: 0;
-  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px, var(--color_background));
+  background: linear-gradient(var(--color_gradient), 40px, var(--color_background) 100px) var(--color_gradient);
 }
 
 body.login-form-show::after {
@@ -72,10 +87,11 @@ body.login-form-show::after {
 
 .container {
   display: grid;
+  grid-template-columns: 300px 1fr;
   grid-template-rows: 85px 85px 1fr;
   padding-top: var(--padding_container-top);
   margin: 0 var(--margin_container-side);
-  column-gap: 100px;
+  column-gap: 80px;
 }
 
 header {
@@ -108,6 +124,7 @@ header nav .sign-up {
   padding: 7px 6px 1px 6px;
 }
 
+/* login-form 관련 css */
 header #login-form-container {
   display: none;
   position: absolute;
@@ -117,7 +134,6 @@ header #login-form-container {
   height: 100vh;
 }
 
-/* login-form 관련 css */
 header #login-form-container .login-form {
   display: flex;
   flex-direction: column;
@@ -161,6 +177,7 @@ header #login-form-container .login-form .login-form-hide:hover {
 header #login-form-container .login-form input {
   height: 40px;
   border: 1px solid rgb(0, 0, 0, 0.08);
+  padding: 10px;
   margin: 10px 0 20px 0;
   background-color: rgb(0, 0, 0, 0.03);
 }
@@ -240,40 +257,41 @@ header nav #write-button {
   margin-top: 27px;
 }
 
-#searching-menu {
+#category #searching-menu {
   display: flex;
   align-items: center;
   height: 27px;
 }
 
-#searching-menu img{
+#category #searching-menu img{
   width: 24px;
   height: 24px;
   padding: 3px;
 }
 
-.searching-input {
+#category #searching-menu .search {
+  font-size: var(--size_menu);
+}
+
+#category .searching-input {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 40px;
   border: 1px solid var(--color_black);
-  padding: 16px;
+  padding: 8px;
   margin-top: 15px;
   background-color: var(--color_white);
 }
 
-#searching {
+#category .searching-input #searching {
   width: 100%;
   border: none;
   background-color: var(--color_white);
 }
 
-#searching-menu .search {
-  font-size: var(--size_menu);
-}
 
-#filter-menu {
+#category #filter-menu {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -283,23 +301,23 @@ header nav #write-button {
   margin-top: 37px;
 }
 
-#filter-menu img {
+#category #filter-menu img {
   width: 24px;
   height: 24px;
   padding: 3px;
 }
 
-#filter-menu .filter {
+#category #filter-menu .filter {
   font-size: var(--size_menu);
 }
 
 #category .category-menu {
   display: block;
   margin: 15px 0px;
-  font-size: var(--size-menu-medium);
+  font-size: var(--size_menu-medium);
 }
 
-.book-from {
+#category .book-from {
   display: flex;
   justify-content: flex-start;
   padding-bottom: 20px;
@@ -307,22 +325,19 @@ header nav #write-button {
   font-size: var(--size_button);
 }
 
-.book-from .domestic {
+#category .book-from button {
   width: 95px;
-  padding: 11px 10px;
   border: 1px solid var(--color_black);
-  margin-right: 9px;
+  padding: 11px 10px;
+  margin-right: 7.5px;
   background-color: var(--color_white);
 }
 
-.book-from .overseas {
-  width: 95px;
-  padding: 11px 10px;
-  border: 1px solid var(--color_black);
-  background-color: var(--color_white);
+#category .book-from button:hover {
+  background-color: rgb(0, 0, 0, 0.08);
 }
 
-.book-type {
+#category .book-type {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -330,7 +345,7 @@ header nav #write-button {
   font-size: var(--size_button);
 }
 
-.book-type .field {
+#category .book-type .field {
   width: 95px;
   border: solid 1px var(--color_black);
   padding: 11px 10px;
@@ -338,14 +353,22 @@ header nav #write-button {
   background-color: var(--color_white);
 }
 
-.category-action {
+#category .book-type .field:hover {
+  background-color: rgb(0, 0, 0, 0.08);
+}
+
+#category .book-type .field-selected{
+  background-color: var(--color_highlight);
+}
+
+#category .category-action {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-top: 32px;
 }
 
-.category-action .filter-search {
+#category .category-action .filter-search {
   width: 222px;
   height: 40px;
   color: var(--color_white);
@@ -353,7 +376,7 @@ header nav #write-button {
   background-color: var(--color_highlight);
 }
 
-.category-action .initialize {
+#category .category-action .initialize {
   width: 72px;
   height: 40px;
   border: 1px solid var(--color_black);
@@ -393,29 +416,116 @@ header nav #write-button {
 }
 
 .main {
-  grid-column: 2 / 3;
-  grid-row: 3 / 4;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, auto));
+}
+
+/* grid-view */
+
+#grid-view {
+  display: none;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 300px));
   grid-template-rows: repeat(auto-fill, minmax(220px, auto));
   gap: 24px;
-}
-
-.grid-view-contents { 
-  align-items:center;
-  background-color: rgb(217, 228, 225);
 } 
 
-
-.grid-view-contents img {
-  width: 20%;
-  height: auto;
+#grid-view .grid-view-content {
+  position: relative;
+  width: 270px;
+  background-color: var(--color_white);
+  border: 1px solid rgb(0, 0, 0, 0.87);
 }
-.grid-view-content,
-.book-content {
+
+#grid-view .grid-view-content .grid-view-content-img {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-color: rgb(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+#grid-view .grid-view-content .grid-view-content-like {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 118px;
+  right: 10px;
+}
+
+#grid-view .grid-view-content .grid-view-content-like img {
+  width: 20px;
+  height: 20px;
+}
+
+#grid-view .grid-view-content .grid-view-content-like .like-number {
+  color: var(--color_white);
+  font-size: var(--size_like-number);
+}
+
+#grid-view .grid-view-content .grid-book-info {
+  padding: 15px 20px;
+}
+
+#grid-view .grid-view-content .grid-book-info .grid-content-title {
+  font-size: var(--size_grid-content-title);
+}
+
+#grid-view .grid-view-content .grid-book-info .grid-book-title {
+  font-size: var(--size_grid-book-title);
+}
+
+#grid-view .grid-view-content .grid-book-info .summary {
+  font-size: var(--size_summary);
+}
+
+#grid-view .grid-view-content .write-info {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 45px;
+  border-top: 1px solid rgb(0, 0, 0, 0.08);
+  padding: 10px 15px;
+  font-size: var(--size_write-info);
+}
+
+#grid-view .grid-view-content .write-info .profile-nickname {
+  
+}
+
+/* list-view */
+#list-view {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items:center;
+
 }
 
+#list-view .classification {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 46px;
+  border-top: 1px solid var(--color_black);
+  border-bottom: 1px solid var(--color_black);
+  padding: 10px;
+  font-size: var(--size_list-view);
+}
+
+#list-view .classification .classification-book-type {
+  width: 120px;
+}
+
+#list-view .classification .classification-content-title {
+  width: 400px;
+}
+
+#list-view .classification .classification-book-title {
+  width: 140px;
+}
+
+#list-view .list-view-content {
+  height: 46px;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.08);
+}

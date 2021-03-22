@@ -21,7 +21,13 @@
   --size_write-info : 12px;
   /* size(Home의 list view) */
   --size_list-view : 14px;
-
+  --size_list-view-content : 13px;
+  
+  /* width&height */
+  --width_list-view-content-title : 360px;
+  --width_list-view-book-title : 190px;
+  --width_list-view-profile-nickname : 130px;
+  --height_list-view-content : 80px;
 
   /*color*/
   --color_highlight : #4FBA80; /*버튼, 하이라이트된 부분*/
@@ -38,6 +44,8 @@
 
   /*padding*/
   --padding_container-top: 30px;
+  --padding_list-view-content: 10px;
+  --padding_lsit-view-content-right: 15px;
   
   /*margin*/
   --margin_container-side : 80px;
@@ -425,12 +433,12 @@ header nav #write-button {
   flex-wrap: wrap;
   grid-template-columns: repeat(auto-fill, minmax(270px, 300px));
   grid-template-rows: repeat(auto-fill, minmax(220px, auto));
-  gap: 24px;
+  gap: 21px;
 } 
 
 #grid-view .grid-view-content {
   position: relative;
-  width: 270px;
+  width: 286px;
   background-color: var(--color_white);
   border: 1px solid rgb(0, 0, 0, 0.87);
 }
@@ -462,10 +470,11 @@ header nav #write-button {
 }
 
 #grid-view .grid-view-content .grid-book-info {
-  padding: 15px 20px;
+  padding: 5px 15px;
 }
 
 #grid-view .grid-view-content .grid-book-info .grid-content-title {
+  height: 42px;
   font-size: var(--size_grid-content-title);
 }
 
@@ -478,7 +487,7 @@ header nav #write-button {
 }
 
 #grid-view .grid-view-content .write-info {
-  position: absolute;
+  position: relative;
   bottom: 0;
   display: flex;
   flex-direction: row;
@@ -490,9 +499,6 @@ header nav #write-button {
   font-size: var(--size_write-info);
 }
 
-#grid-view .grid-view-content .write-info .profile-nickname {
-  
-}
 
 /* list-view */
 #list-view {
@@ -513,19 +519,38 @@ header nav #write-button {
   font-size: var(--size_list-view);
 }
 
-#list-view .classification .classification-book-type {
-  width: 120px;
-}
-
 #list-view .classification .classification-content-title {
-  width: 400px;
+  width: var(--width_list-view-content-title);
 }
 
 #list-view .classification .classification-book-title {
-  width: 140px;
+  width: var(--width_list-view-book-title);
+}
+
+#list-view .classification .classification-profile-nickname {
+  width: var(--width_list-view-profile-nickname);
 }
 
 #list-view .list-view-content {
-  height: 46px;
+  display: flex;
+  align-items: center;
+  height: var(--height_list-view-content);
   border-bottom: 1px solid rgb(0, 0, 0, 0.08);
+  padding: var(--padding_list-view-content);
+  font-size: var(--size_list-view-content);
+}
+
+#list-view .list-view-content .list-content-title {
+  width: var(--width_list-view-content-title);
+  padding-right: var(--padding_lsit-view-content-right);
+}
+
+#list-view .list-view-content .list-book-title {
+  width: var(--width_list-view-book-title);
+  padding-right: var(--padding_lsit-view-content-right);
+}
+
+#list-view .list-view-content .list-profile-nickname {
+  width: var(--width_list-view-profile-nickname);
+  padding-right: var(--padding_lsit-view-content-right);
 }

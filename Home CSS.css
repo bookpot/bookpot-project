@@ -34,6 +34,7 @@
   --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
   --color_gradient :  #A6CBB7; /*gradient*/
   --color_background : #F7F7F7;
+  --color_error : #FF002E;
   --color_white : #FFFFFF;
   --color_black : #000000;
 
@@ -191,13 +192,19 @@ header #login-form-container .login-form input {
   background-color: rgb(0, 0, 0, 0.03);
 }
 
+header #login-form-container .login-form #login-password {
+  margin-bottom: 30px;
+}
+
 header #login-form-container #login-form-error-message {
   height: 25px;
+  font-size: 14px;
+  color: var(--color_error);
 }
 
 header #login-form-container .login-form #login-form-submit {
   height: 40px;
-  margin: 20px 0 20px 0;
+  margin: 10px 0 20px 0;
   background-color: var(--color_highlight);
   color: var(--color_white);
 }

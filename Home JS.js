@@ -10,6 +10,11 @@ let listViewSelected = document.getElementById("list-view-selected");
 let gridViewSelected = document.getElementById("grid-view-selected");
 let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
+// login 관련 변수
+let loginFormErrormessage;
+let loginFormSubmit = document.getElementById("login-form-submit");
+let loginEmail;
+let loginPassword;
 let indexOfView
 
 // 로그인 창 띄우고&닫기
@@ -51,6 +56,28 @@ function contentSummaryPrint() {
 }
 contentSummaryPrint();
 
+// function checkForm() {
+//     loginEmail = document.getElementById("login-email");
+//     loginPassword = document.getElementById("login-password");
+//     if (loginEmail.value == "" || loginPassword.value == "") {
+//         loginFormSubmit.style.backgroundColor = "#A6CBB7";
+//     }
+//     else {
+//         loginFormSubmit.style.backgroundColor = "#4FBA80";
+//     }
+// }
+// checkForm();
+
+function showLoginError() {
+    console.log("showLoginError 함수 실행됨");
+    loginFormErrormessage = document.getElementById("login-form-error-message");
+    if (loginFormErrormessage.innerText == "") {
+        console.log("error가 날 상황이 아님");
+        loginFormErrormessage.style.display = "none"
+    }
+}
+
 // view 전환
 listViewSelected.addEventListener("click", function(){listView.style.display = "flex"; gridView.style.display = "none" });
 gridViewSelected.addEventListener("click", function(){listView.style.display = "none"; gridView.style.display = "flex" });
+loginFormSubmit.addEventListener("click", showLoginError());

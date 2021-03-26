@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>책단지</title>
     <link rel="stylesheet" href="Home CSS.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -97,8 +99,8 @@
                 <div class="latest">최신</div>
             </div>
             <div class="view-type">
-                <button id="list-view-selected" class="view-type-select"><img src="icon/list_black.svg"></button>
-                <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg"></button>
+                <button id="list-view-selected" class="view-type-select"><img src="icon/list_green.svg" id="list-view-icon"></button>
+                <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg" id="grid-view-icon"></button>
                 <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
             </div>
         </div>

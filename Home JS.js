@@ -4,18 +4,19 @@ const loginForm = document.getElementsByClassName("login-form");
 const loginFormContainer = document.getElementById("login-form-container");
 let gridContentSummary = document.getElementsByClassName("summary");
 let bookTypeField = document.getElementsByClassName("field");
+// login 관련 변수
+let loginFormErrormessage;
+let loginFormSubmit = document.getElementById("login-form-submit");
+let loginEmail;
+let loginPassword;
+// 그리드뷰&리스트뷰 관련 변수
 let viewType = document.getElementsByClassName("view-type");
 let viewTypeSelect = document.getElementsByClassName("view-type-select");
 let listViewSelected = document.getElementById("list-view-selected");
 let gridViewSelected = document.getElementById("grid-view-selected");
 let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
-// login 관련 변수
-let loginFormErrormessage;
-let loginFormSubmit = document.getElementById("login-form-submit");
-let loginEmail;
-let loginPassword;
-let indexOfView
+let contentView;
 
 // 로그인 창 띄우고&닫기
 $(document).ready(function(){
@@ -29,6 +30,35 @@ $(document).ready(function(){
         $("body").removeClass("login-form-show");
         $("#login-form-container").hide();
         $(".login-form").hide();
+    })
+
+    $("#login-form-submit").click(function() {
+        var token = $("meta[name='csrf']").attr('content');
+        var header = $("meta[name='csrf_header']").attr('content');
+        $.ajax({
+            url : "/login",
+            type : "post",
+            dataType : "json",
+            data : {
+                username : $("#login-email").val(),
+                password : $("#login-password").val()
+            },
+            beforeSend : function(xhr) {
+                if(token && header)
+                    xhr.setRequestHeader(header, token);
+            },
+            success : function(result) {
+                if(result.success) {
+                    console.log("로그인 성공");
+                    window.location.href = result.returnUrl;
+                } else {
+                    $("#login-form-error-message").show();
+                }
+            },
+            error : function(a, b, c) {
+                console.log("로그인 에러" + a + b + c);                
+            }
+        })
     })
 })
 
@@ -47,27 +77,6 @@ function bookTypeSelected(iOfField) {
     }
 }
 
-// grid view content의 내용 요약
-function contentSummaryPrint() {
-    for (let i=0; i<gridContentSummary.length; i++) {
-        console.log(gridContentSummary[i].innerText);
-        gridContentSummary[i].innerText = gridContentSummary[i].innerText.slice(0,46) + "...";
-    }
-}
-contentSummaryPrint();
-
-// function checkForm() {
-//     loginEmail = document.getElementById("login-email");
-//     loginPassword = document.getElementById("login-password");
-//     if (loginEmail.value == "" || loginPassword.value == "") {
-//         loginFormSubmit.style.backgroundColor = "#A6CBB7";
-//     }
-//     else {
-//         loginFormSubmit.style.backgroundColor = "#4FBA80";
-//     }
-// }
-// checkForm();
-
 function showLoginError() {
     console.log("showLoginError 함수 실행됨");
     loginFormErrormessage = document.getElementById("login-form-error-message");
@@ -78,6 +87,15 @@ function showLoginError() {
 }
 
 // view 전환
-listViewSelected.addEventListener("click", function(){listView.style.display = "flex"; gridView.style.display = "none" });
-gridViewSelected.addEventListener("click", function(){listView.style.display = "none"; gridView.style.display = "flex" });
-loginFormSubmit.addEventListener("click", showLoginError());
+listViewSelected.addEventListener("click", function(){
+    let listViewIcon = document.getElementById('list-view-icon');
+    let gridViewIcon = document.getElementById("grid-view-icon");
+    listViewIcon.src = "icon/list_green.svg";
+    gridViewIcon.src = "icon/grid_black.svg";
+    listView.style.display = "flex"; gridView.style.display = "none" });
+gridViewSelected.addEventListener("click", function(){
+    let listViewIcon = document.getElementById('list-view-icon');
+    let gridViewIcon = document.getElementById("grid-view-icon");
+    listViewIcon.src = "icon/list_black.svg";
+    gridViewIcon.src = "icon/grid_green.svg";
+    listView.style.display = "none"; gridView.style.display = "flex" });

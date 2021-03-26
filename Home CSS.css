@@ -197,6 +197,7 @@ header #login-form-container .login-form #login-password {
 }
 
 header #login-form-container #login-form-error-message {
+  display: none;
   height: 25px;
   font-size: 14px;
   color: var(--color_error);
@@ -443,14 +444,12 @@ header nav #write-button {
 #grid-view {
   display: none;
   flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 300px));
-  grid-template-rows: repeat(auto-fill, minmax(220px, auto));
   gap: 21px;
 } 
 
 #grid-view .grid-view-content {
   position: relative;
-  width: 286px;
+  width: 281px;
   background-color: var(--color_white);
   border: 1px solid rgb(0, 0, 0, 0.87);
 }

@@ -372,11 +372,7 @@ header nav #write-button {
   padding: 11px 10px;
   margin: 4px 0px;
   background-color: var(--color_white);
-}
-
-#category .book-type .field:hover {
-  background-color: rgb(0, 0, 0, 0.08);
-}
+} 
 
 #category .book-type .field-selected{
   background-color: var(--color_highlight);
@@ -444,12 +440,12 @@ header nav #write-button {
 #grid-view {
   display: none;
   flex-wrap: wrap;
-  gap: 21px;
+  gap: 20px;
 } 
 
 #grid-view .grid-view-content {
   position: relative;
-  width: 281px;
+  width: 280px;
   background-color: var(--color_white);
   border: 1px solid rgb(0, 0, 0, 0.87);
 }

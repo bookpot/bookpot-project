@@ -18,8 +18,8 @@ let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
 let contentView;
 
-// 로그인 창 띄우고&닫기
 $(document).ready(function(){
+    // 로그인 창 띄우고&닫기
     $(".login").click(function(){
         $("body").toggleClass("login-form-show");
         $("#login-form-container").show();
@@ -60,22 +60,40 @@ $(document).ready(function(){
             }
         })
     })
+
+    //분야 선택시 색 변하게 & 배열 담아서 선택된 분야에 대한 데이터 보내기
+    var categories = new Array(); //선택된 분야 넣을 배열
+    $(".field").click(function() {
+        var index = $(".field").index(this);
+        var clickButton = $(".field:eq(" + index + ")");
+        //선택되었을 때
+        if (clickButton.css("backgroundColor") == "rgb(255, 255, 255)" || clickButton.css("backgroundColor") == "") {
+            console.log("하이라이트 버튼으로 변경");
+            clickButton.css("backgroundColor", "#4FBA80");
+            clickButton.css("color", "rgb(255, 255, 255)");
+            categories.push(clickButton.text());
+        } else { //선택 해제되었을 때
+            console.log("기본 버튼으로 변경");
+            clickButton.css("backgroundColor", "rgb(255, 255, 255)");
+            clickButton.css("color", "rgb(0, 0, 0)");
+            categories.splice(categories.indexOf(clickButton.text()),1);
+        }
+        console.log(categories);
+    })
 })
 
 //분야 선택
-function bookTypeSelected(iOfField) {
-    console.log(bookTypeField[iOfField].style.backgroundColor);
-    if (bookTypeField[iOfField].style.backgroundColor == "#FFFFFF") {
-        console.log("하이라이트로 변경");
-        bookTypeField[iOfField].style.backgroundColor = "#4FBA80";
-        bookTypeField[iOfField].style.color = "#FFFFFF";
-    }
-    else{
-        console.log("기본으로 변경");
-        bookTypeField[iOfField].style.backgroundColor = "#FFFFFF";
-        bookTypeField[iOfField].style.color = "#000000";
-    }
-}
+// function bookTypeSelected(iOfField) {
+//     console.log(bookTypeField[iOfField].style.backgroundColor);
+//     if (bookTypeField[iOfField].style.backgroundColor == "rgb(255, 255, 255)" || bookTypeField[iOfField].style.backgroundColor == "") {
+//         bookTypeField[iOfField].style.backgroundColor = "#4FBA80";
+//         bookTypeField[iOfField].style.color = "rgb(255, 255, 255)";
+//     }
+//     else{
+//         bookTypeField[iOfField].style.backgroundColor = "rgb(255, 255, 255)";
+//         bookTypeField[iOfField].style.color = "#000000";
+//     }
+// }
 
 function showLoginError() {
     console.log("showLoginError 함수 실행됨");

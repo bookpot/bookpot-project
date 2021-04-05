@@ -18,6 +18,8 @@ let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
 let contentView;
 
+console.log('a\nb\nc');
+
 $(document).ready(function(){
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
@@ -80,20 +82,50 @@ $(document).ready(function(){
         }
         console.log(categories);
     })
-})
+    //찾기 눌렀을 때
+    $("#filter-search").click(function() {
+        var resultUrl = "";
+        var qsCategories = "";
+        //분야 중 선택된 게 없을 때
+        if (categories.length == 0) {
+            qsCategories += "&categories=";
+        }else {
+            for (let index = 0; index < categories.length; index++) {
+                qsCategories += "&categories=" + categories[index];
+            }
+        }
+        
+        resultUrl += "/writing/search?keyword=&division=" + qsCategories + "&sort=good";
+        console.log(resultUrl);
+        $.ajax({
+            url : resultUrl,
+            type : "get",
+            dataType : "json",
+            success : function(data) { 
+                const searchResult = JSON.parse(data);
+                let gridContent = "";
+                for (let index = 0; index < searchResult.writing.length; index++) {
+                    let likeIcon = '<img src="icon/like_white.svg">\n';
+                    if (searchResult.writing[index].isGood == true) {
+                        likeIcon = '<img src="icon/like_green.svg">\n';
+                    }
+                    gridContent += '<div class="grid-view-content-img">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
+                    gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
+                }
+            }
+        })
+    })
 
-//분야 선택
-// function bookTypeSelected(iOfField) {
-//     console.log(bookTypeField[iOfField].style.backgroundColor);
-//     if (bookTypeField[iOfField].style.backgroundColor == "rgb(255, 255, 255)" || bookTypeField[iOfField].style.backgroundColor == "") {
-//         bookTypeField[iOfField].style.backgroundColor = "#4FBA80";
-//         bookTypeField[iOfField].style.color = "rgb(255, 255, 255)";
-//     }
-//     else{
-//         bookTypeField[iOfField].style.backgroundColor = "rgb(255, 255, 255)";
-//         bookTypeField[iOfField].style.color = "#000000";
-//     }
-// }
+    //인기순, 최신순
+    $(".best").click(function() {
+        $(".best").toggleClass("array-selected");
+        $(".latest").removeClass("array-selected");
+    })
+    $(".latest").click(function() {
+        $(".latest").toggleClass("array-selected");
+        $(".best").removeClass("array-selected");
+    })
+})
 
 function showLoginError() {
     console.log("showLoginError 함수 실행됨");

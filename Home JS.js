@@ -109,9 +109,13 @@ $(document).ready(function(){
                     if (searchResult.writing[index].isGood == true) {
                         likeIcon = '<img src="icon/like_green.svg">\n';
                     }
-                    gridContent += '<div class="grid-view-content-img">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
+                    gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
                     gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
+                    gridContent += '<div class="grid-book-info">\n<h1 class="grid-content-title">' + searchResult.writing[index].title + '</h1>\n';
+                    gridContent += '<h3 class="grid-book-title">' + searchResult.writing[index].booktitle + '</h3>\n';
+                    gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n</div>'
                 }
+                $("#grid-view").append(gridContent);
             }
         })
     })

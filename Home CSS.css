@@ -34,6 +34,7 @@
   --color_logo : #0F9B6B; /*로고 있는 부분, 회원가입 페이지 임시저장 부분*/
   --color_gradient :  #A6CBB7; /*gradient*/
   --color_background : #F7F7F7;
+  --color_error : #FF002E;
   --color_white : #FFFFFF;
   --color_black : #000000;
 
@@ -96,7 +97,7 @@ body.login-form-show::after {
 .container {
   display: grid;
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 85px 85px 1fr;
+  grid-template-rows: 85px 95px 1fr;
   padding-top: var(--padding_container-top);
   margin: 0 var(--margin_container-side);
   column-gap: 80px;
@@ -161,6 +162,7 @@ header #login-form-container .login-form .logo{
   display: flex;
   align-items: center;
   align-self: center;
+  height: 40px;
   margin-bottom: 20px;
 }
 
@@ -190,9 +192,20 @@ header #login-form-container .login-form input {
   background-color: rgb(0, 0, 0, 0.03);
 }
 
+header #login-form-container .login-form #login-password {
+  margin-bottom: 30px;
+}
+
+header #login-form-container #login-form-error-message {
+  display: none;
+  height: 25px;
+  font-size: 14px;
+  color: var(--color_error);
+}
+
 header #login-form-container .login-form #login-form-submit {
   height: 40px;
-  margin: 20px 0 20px 0;
+  margin: 10px 0 20px 0;
   background-color: var(--color_highlight);
   color: var(--color_white);
 }
@@ -359,11 +372,7 @@ header nav #write-button {
   padding: 11px 10px;
   margin: 4px 0px;
   background-color: var(--color_white);
-}
-
-#category .book-type .field:hover {
-  background-color: rgb(0, 0, 0, 0.08);
-}
+} 
 
 #category .book-type .field-selected{
   background-color: var(--color_highlight);
@@ -376,7 +385,7 @@ header nav #write-button {
   margin-top: 32px;
 }
 
-#category .category-action .filter-search {
+#category .category-action #filter-search {
   width: 222px;
   height: 40px;
   color: var(--color_white);
@@ -384,7 +393,7 @@ header nav #write-button {
   background-color: var(--color_highlight);
 }
 
-#category .category-action .initialize {
+#category .category-action #initialize {
   width: 72px;
   height: 40px;
   border: 1px solid var(--color_black);
@@ -414,6 +423,25 @@ header nav #write-button {
   text-align: center;
 }
 
+#array .content-array .best {
+  
+}
+
+#array .content-array .latest {
+  
+}
+
+#array .content-array .array-selected::after{
+  transform: translateX(10px) scaleX(1);
+  transition: transform .3s;
+  margin-top: 10px;
+  display: block;
+  width: 80%;
+  height: 2px;
+  content: "";
+  background-color: var(--color_highlight);
+}
+
 .view-type {
   opacity: 0.38;
 }
@@ -431,14 +459,12 @@ header nav #write-button {
 #grid-view {
   display: none;
   flex-wrap: wrap;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 300px));
-  grid-template-rows: repeat(auto-fill, minmax(220px, auto));
-  gap: 21px;
+  gap: 20px;
 } 
 
 #grid-view .grid-view-content {
   position: relative;
-  width: 286px;
+  width: 280px;
   background-color: var(--color_white);
   border: 1px solid rgb(0, 0, 0, 0.87);
 }
@@ -521,6 +547,10 @@ header nav #write-button {
 
 #list-view .classification .classification-content-title {
   width: var(--width_list-view-content-title);
+}
+
+#list-view .classification {
+  width: ;
 }
 
 #list-view .classification .classification-book-title {

@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>책단지</title>
     <link rel="stylesheet" href="Home CSS.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -39,6 +41,7 @@
                     <input type="email" id="login-email" placeholder="이메일을 입력하세요">
                     <label for="login-password">비밀번호</label>
                     <input type="password" id="login-password" placeholder="비밀번호를 입력하세요">
+                    <div id="login-form-error-message">가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</div>
                     <button id="login-form-submit" type="submit">로그인</button>
                 </form>
             </div> <!-- 아이디,비밀번호 dropdown 입력창 묶음 -->
@@ -66,38 +69,38 @@
             </div>
             <span class="category-menu">분야</span>
             <div class="book-type">
-                <button class="field" type="button" onclick="bookTypeSelected(0)">예술</button>
-                <button class="field" type="button" onclick="bookTypeSelected(1)">소설</button>
-                <button class="field" type="button" onclick="bookTypeSelected(2)">역사/문화</button>
-                <button class="field" type="button" onclick="bookTypeSelected(3)">인문</button>
-                <button class="field" type="button" onclick="bookTypeSelected(4)">비문학</button>
-                <button class="field" type="button" onclick="bookTypeSelected(5)">경제/경영</button>
-                <button class="field" type="button" onclick="bookTypeSelected(6)">정치</button>
-                <button class="field" type="button" onclick="bookTypeSelected(7)">영어</button>
-                <button class="field" type="button" onclick="bookTypeSelected(8)">과학</button>
-                <button class="field" type="button" onclick="bookTypeSelected(9)">여성학</button>
-                <button class="field" type="button" onclick="bookTypeSelected(10)">고전</button> 
-                <button class="field" type="button" onclick="bookTypeSelected(11)">자기계발</button> 
-                <button class="field" type="button" onclick="bookTypeSelected(12)">취미/실용</button> 
-                <button class="field" type="button" onclick="bookTypeSelected(13)">컴퓨터</button> 
-                <button class="field" type="button" onclick="bookTypeSelected(14)">어린이</button> 
+                <button class="field" type="button">예술</button>
+                <button class="field" type="button">소설</button>
+                <button class="field" type="button">역사/문화</button>
+                <button class="field" type="button">인문</button>
+                <button class="field" type="button">비문학</button>
+                <button class="field" type="button">경제/경영</button>
+                <button class="field" type="button">정치</button>
+                <button class="field" type="button">영어</button>
+                <button class="field" type="button">과학</button>
+                <button class="field" type="button">여성학</button>
+                <button class="field" type="button">고전</button> 
+                <button class="field" type="button">자기계발</button> 
+                <button class="field" type="button">취미/실용</button> 
+                <button class="field" type="button">컴퓨터</button> 
+                <button class="field" type="button">어린이</button> 
                 <!--더 적어야함-->
             </div>
             <div class="category-action">
-                <button class="filter-search" type="button">찾기</button>
-                <button class="initialize" type="reset">초기화</button> <!--위에서 누른것들 초기화되도록-->
+                <button id="filter-search" type="button">찾기</button>
+                <button id="initialize" type="reset">초기화</button> <!--위에서 누른것들 초기화되도록-->
             </div>
         </div>
         
         <!--인기글, 최신순 탭 + 그리드&리스트 뷰-->
         <div id="array">
             <div class="content-array">
-                <div class="best">인기</div>
+                <div class="best array-selected">인기</div>
                 <div class="latest">최신</div>
             </div>
             <div class="view-type">
-                <button id="list-view-selected" class="view-type-select"><img src="icon/list_black.svg"></button>
-                <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg"></button>
+                <button id="list-view-selected" class="view-type-select"><img src="icon/list_green.svg" id="list-view-icon"></button>
+                <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg" id="grid-view-icon"></button>
                 <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
             </div>
         </div>
@@ -106,8 +109,7 @@
             <div id="grid-view">
                 <div class="grid-view-content">
                     <div class="grid-view-content-img">
-                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109"
-                            alt="book image">
+                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109" alt="book image">
                     </div>
                     <div class="grid-view-content-like">
                         <img src="icon/like_white.svg">
@@ -130,8 +132,7 @@
     
                 <div class="grid-view-content">
                     <div class="grid-view-content-img">
-                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109"
-                            alt="book image">
+                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109" alt="book image">
                     </div>
                     <div class="grid-view-content-like">
                         <img src="icon/like_white.svg">
@@ -153,8 +154,7 @@
     
                 <div class="grid-view-content">
                     <div class="grid-view-content-img">
-                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109"
-                            alt="book image">
+                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109" alt="book image">
                     </div>
                     <div class="grid-view-content-like">
                         <img src="icon/like_white.svg">
@@ -177,8 +177,7 @@
     
                 <div class="grid-view-content">
                     <div class="grid-view-content-img">
-                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109"
-                            alt="book image">
+                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109" alt="book image">
                     </div>
                     <div class="grid-view-content-like">
                         <img src="icon/like_white.svg">
@@ -201,8 +200,7 @@
             
                 <div class="grid-view-content">
                     <div class="grid-view-content-img">
-                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109"
-                            alt="book image">
+                        <img src="https://t1.daumcdn.net/cfile/tistory/99D20C355C94394109" alt="book image">
                     </div>
                     <div class="grid-view-content-like">
                         <img src="icon/like_white.svg">
@@ -225,12 +223,14 @@
             </div>
             <div id="list-view">
                 <div class="classification">
+                    <div class="content-number">번호</div>
                     <div class="classification-content-title">제목</div>
                     <div class="classification-book-title">책 제목</div>
                     <div class="classification-profile-nickname">작성자</div>
                     <div class="classification-register-date">작성일</div>
                 </div>
                 <div class="list-view-content">
+                    <div class="list-content-number">1</div>
                     <div class="list-content-title">엔지니어도 인문학이 필요할까?</div>
                     <div class="list-book-title">엔지니어를 위한 인문학 수업</div>
                     <div class="list-profile-nickname">Yunji Jeong</div>

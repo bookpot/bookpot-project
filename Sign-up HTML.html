@@ -68,8 +68,8 @@
                 <!--닉네임 입력-->
                 <p>
                     <label for="nickname">닉네임</label><br>
-                    <input id="nickname" type="text" placeholder="한글과 영문 대 소문자를 사용하세요(특수기호, 공백 사용 불가)">
-                    <button id="nickname-button">중복확인</button>
+                    <input id="nickname" type="text" placeholder="2~10자 한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)">
+                    <button type="button" id="nickname-button">중복확인</button>
                     <div class="alert-nickname" id="nickname-check"></div>
                     <!-- class는 css용, id는 js용 -->
                 </p>
@@ -78,13 +78,13 @@
                 <p>
                     <label for="email">이메일</label><br>
                     <input id="email" type="text" placeholder="인증번호를 받을 이메일을 입력해주세요.">
-                    <button id="email-button">인증번호 발송</button>
+                    <button type="button" id="email-button">인증번호 발송</button>
                     <div class="alert-email" id="email-check"></div>
 
                 <!--인증번호 입력-->
                 <div class="email-code-set">
-                    <input id="email-check" type="text" placeholder="인증번호를 입력해주세요.">
-                    <button id="email-check-button">인증번호 확인</button>
+                    <input id="code-check" type="text" placeholder="인증번호를 입력해주세요.">
+                    <button type="button" id="email-check-button">인증번호 확인</button>
                     <div class="alert-code" id="code-check"></div>
 
                 </div></p>
@@ -119,7 +119,6 @@
 
                 <p>
                     <input id="submit-button" type="submit" value="동의하고 회원가입">
-                    
                 </p>
             </form>
         </div>

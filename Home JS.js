@@ -85,24 +85,24 @@ $(document).ready(function(){
     //찾기 눌렀을 때
     $("#filter-search").click(function() {
         var resultUrl = "";
-        var qsCategories = "";
+        var qsCategories = "&categories";
         //분야 중 선택된 게 없을 때
-        if (categories.length == 0) {
-            qsCategories += "&categories=";
-        }else {
-            for (let index = 0; index < categories.length; index++) {
-                qsCategories += "&categories=" + categories[index];
-            }
+        for (let index = 0; index < categories.length - 1; index++) {
+            qsCategories += categories[index] + ",";
         }
-        
+        if (categories.length > 0) {
+            qsCategories += categories[categories.length - 1];
+        }
+        //"/writing/search?keyword=&division=categories="예술","문화","어린이"&sort=good";
         resultUrl += "/writing/search?keyword=&division=" + qsCategories + "&sort=good";
         console.log(resultUrl);
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : function(data) { 
-                const searchResult = JSON.parse(data);
+            success : function(data) {
+                $(".grid-view-content").empty();
+                const searchResult = data;
                 let gridContent = "";
                 for (let index = 0; index < searchResult.writing.length; index++) {
                     let likeIcon = '<img src="icon/like_white.svg">\n';
@@ -113,7 +113,10 @@ $(document).ready(function(){
                     gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
                     gridContent += '<div class="grid-book-info">\n<h1 class="grid-content-title">' + searchResult.writing[index].title + '</h1>\n';
                     gridContent += '<h3 class="grid-book-title">' + searchResult.writing[index].booktitle + '</h3>\n';
-                    gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n</div>'
+                    gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n';
+                    gridContent += '<div class="write-info">\n<div class="register-profile">\n<img src="' + searchResult.writing[index].userimg + '" >\n';
+                    gridContent += '<span class="profile-nickname">' + searchResult.writing[index].nickname + '</span>\n</div>';
+                    gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>';
                 }
                 $("#grid-view").append(gridContent);
             }

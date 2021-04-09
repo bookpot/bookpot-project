@@ -1,0 +1,7 @@
+<!--스크랩 아이콘-->
+ <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <g id="icon_action_bookmark_24px" data-name="icon/action/bookmark_24px" opacity="0.38">
+    <rect id="Boundary" width="40" height="40" fill="none"/>
+      <path id="_Color" data-name=" ↳Color" d="M25.714,0H4.286A4.068,4.068,0,0,0,0,3.778V34l15-5.667L30,34V3.778A4.068,4.068,0,0,0,25.714,0Z" transform="translate(5 3)"/>
+  </g>
+</svg>

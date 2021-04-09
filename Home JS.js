@@ -18,8 +18,6 @@ let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
 let contentView;
 
-console.log('a\nb\nc');
-
 $(document).ready(function(){
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
@@ -101,15 +99,17 @@ $(document).ready(function(){
             type : "get",
             dataType : "json",
             success : function(data) {
-                $(".grid-view-content").empty();
+                $(".grid-view").empty();
+                $(".list-view").empty();
                 const searchResult = data;
                 let gridContent = "";
+                let listContent = "";
                 for (let index = 0; index < searchResult.writing.length; index++) {
                     let likeIcon = '<img src="icon/like_white.svg">\n';
                     if (searchResult.writing[index].isGood == true) {
                         likeIcon = '<img src="icon/like_green.svg">\n';
                     }
-                    gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
+                    gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">\n<img src="icon/scrap_white.svg" id="scrap-icon">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
                     gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
                     gridContent += '<div class="grid-book-info">\n<h1 class="grid-content-title">' + searchResult.writing[index].title + '</h1>\n';
                     gridContent += '<h3 class="grid-book-title">' + searchResult.writing[index].booktitle + '</h3>\n';
@@ -131,6 +131,12 @@ $(document).ready(function(){
     $(".latest").click(function() {
         $(".latest").toggleClass("array-selected");
         $(".best").removeClass("array-selected");
+    })
+
+    //scrap 아이콘
+    $("#scrap-icon").click(function() {
+        var contentIndex = $("#scrap-icon").index(this);
+        var clickScrap = $
     })
 })
 

@@ -477,7 +477,7 @@ header nav #write-button {
   text-align: center;
 }
 
-#grid-view .grid-view-content .grid-view-content-img #scrap-icon{
+#grid-view .grid-view-content .grid-view-content-img .scrap-icon{
   position: absolute;
   top: -10px;
   right: 5px;
@@ -551,6 +551,10 @@ header nav #write-button {
   font-size: var(--size_list-view);
 }
 
+#list-view .classification .content-number{
+  width: 60px;
+}
+
 #list-view .classification .classification-content-title {
   width: var(--width_list-view-content-title);
 }
@@ -570,6 +574,10 @@ header nav #write-button {
   border-bottom: 1px solid rgb(0, 0, 0, 0.08);
   padding: var(--padding_list-view-content);
   font-size: var(--size_list-view-content);
+}
+
+#list-view .list-view-content .list-content-number{
+  width: 60px;
 }
 
 #list-view .list-view-content .list-content-title {

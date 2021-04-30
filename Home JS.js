@@ -10,15 +10,15 @@ let loginFormSubmit = document.getElementById("login-form-submit");
 let loginEmail;
 let loginPassword;
 // 그리드뷰&리스트뷰 관련 변수
-let viewType = document.getElementsByClassName("view-type");
-let viewTypeSelect = document.getElementsByClassName("view-type-select");
 let listViewSelected = document.getElementById("list-view-selected");
 let gridViewSelected = document.getElementById("grid-view-selected");
 let listView = document.getElementById("list-view");
 let gridView = document.getElementById("grid-view");
-let contentView;
 
 $(document).ready(function(){
+    let categories = new Array(); //선택된 분야 넣을 배열
+    let searchResult = ""; //검색 결과 넣을 배열
+    let contentNumber; //콘텐츠의 총 갯수 넣을 배열
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
         $("body").toggleClass("login-form-show");
@@ -62,7 +62,6 @@ $(document).ready(function(){
     })
 
     //분야 선택시 색 변하게 & 배열 담아서 선택된 분야에 대한 데이터 보내기
-    var categories = new Array(); //선택된 분야 넣을 배열
     $(".field").click(function() {
         var index = $(".field").index(this);
         var clickButton = $(".field:eq(" + index + ")");
@@ -91,7 +90,6 @@ $(document).ready(function(){
         if (categories.length > 0) {
             qsCategories += categories[categories.length - 1];
         }
-        //"/writing/search?keyword=&division=categories="예술","문화","어린이"&sort=good";
         resultUrl += "/writing/search?keyword=&division=" + qsCategories + "&sort=good";
         console.log(resultUrl);
         $.ajax({
@@ -101,10 +99,11 @@ $(document).ready(function(){
             success : function(data) {
                 $(".grid-view").empty();
                 $(".list-view").empty();
-                const searchResult = data;
+                searchResult = data;
+                contentNumber = searchResult.writing.length;
                 let gridContent = "";
                 let listContent = "";
-                for (let index = 0; index < searchResult.writing.length; index++) {
+                for (let index = 0; index < contentNumber; index++) {
                     let likeIcon = '<img src="icon/like_white.svg">\n';
                     if (searchResult.writing[index].isGood == true) {
                         likeIcon = '<img src="icon/like_green.svg">\n';
@@ -116,7 +115,13 @@ $(document).ready(function(){
                     gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n';
                     gridContent += '<div class="write-info">\n<div class="register-profile">\n<img src="' + searchResult.writing[index].userimg + '" >\n';
                     gridContent += '<span class="profile-nickname">' + searchResult.writing[index].nickname + '</span>\n</div>';
-                    gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>';
+                    gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>\n';
+
+                    listContent += '<div class="list-view-content">\n<div class="list-content-number">' + index+1 + '</div>\n';
+                    listContent += '<div class="list-content-title">' + searchResult.writing[index].title + '</div>\n';
+                    listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
+                    listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
+                    listContent += '<div class="list-register-date">' + searchResult.writing[index].regDate + '</div>\n</div>\n';
                 }
                 $("#grid-view").append(gridContent);
             }
@@ -134,9 +139,28 @@ $(document).ready(function(){
     })
 
     //scrap 아이콘
-    $("#scrap-icon").click(function() {
-        var contentIndex = $("#scrap-icon").index(this);
-        var clickScrap = $
+    $(".scrap-icon").click(function() {
+        var contentIndex = $(".scrap-icon").index(this); //클릭된 콘텐츠의 인덱스
+        let contentId = searchResult.writing[contentIndex].no; //콘텐츠의 고유 번호
+        var clickScrap = $(".scrap-icon:eq(" + contentIndex + ")");
+        //스크랩 추가
+        if (clickScrap.attr("src") == "icon/scrap_white.svg") { 
+            clickScrap.attr("src", "icon/scrap_green.svg");
+            $.ajax ({
+                url : "/writings/" + contentId + "/scrap",
+                type : "post",
+                data : {
+                    
+                }
+            })
+        } else { //스크랩 삭제
+            $.ajax ({
+                url : "/writings/" + contentId + "/scrap",
+                type : "delete",
+                data : {
+                    
+                }
+        }
     })
 })
 

@@ -19,7 +19,7 @@ $(document).ready(function(){
     let categories = []; //선택된 분야 넣을 배열
     let searchResult = ""; //검색 결과 넣을 배열
     let contentNumber; //콘텐츠의 총 갯수 넣을 배열
-    let division; // 국내, 외국 선택
+    let division = ""; // 국내, 외국 선택
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
         $("body").toggleClass("login-form-show");
@@ -107,6 +107,7 @@ $(document).ready(function(){
     
     //초기화 눌렀을 때 -> 선택된 배열 없게끔
     $("#initialize").click(function(){
+        division = "";
         categories = [];
     })
     

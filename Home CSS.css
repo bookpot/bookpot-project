@@ -413,22 +413,10 @@ header nav #write-button {
   display: flex;
 }
 
-#array .content-array .best {
+#array .content-array div {
   width: 100px;
   text-align: center;
-}
-
-#array .content-array .latest {
-  width: 100px;
-  text-align: center;
-}
-
-#array .content-array .best {
-  
-}
-
-#array .content-array .latest {
-  
+  cursor: pointer;
 }
 
 #array .content-array .array-selected::after{

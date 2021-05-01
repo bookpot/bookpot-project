@@ -107,7 +107,6 @@ $(document).ready(function(){
     
     //초기화 눌렀을 때 -> 선택된 배열 없게끔
     $("#initialize").click(function(){
-        division = "";
         categories = [];
     })
     
@@ -185,17 +184,12 @@ $(document).ready(function(){
             $.ajax ({
                 url : "/writings/" + contentId + "/scrap",
                 type : "post",
-                data : {
-                    
-                }
             })
         } else { //스크랩 삭제
             $.ajax ({
                 url : "/writings/" + contentId + "/scrap",
                 type : "delete",
-                data : {
-                    
-                }
+            })
         }
     })
 })

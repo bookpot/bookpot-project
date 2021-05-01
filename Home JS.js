@@ -65,10 +65,12 @@ $(document).ready(function(){
     $("#domestic").click(function() {
         //선택되었을 때
         if ($("#domestic").css("backgroundColor") == "rgb(255, 255, 255)" || $("#domestic").css("backgroundColor") == "") {
+            console.log("국내 선택");
             $("#domestic").css("backgroundColor", "#4FBA80");
             $("#domestic").css("color", "rgb(255, 255, 255)");
             division += "한국"
         }else {
+            console.log("국내 선택 해제");
             $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
             $("#domestic").css("color", "rgb(0, 0, 0)");
             division -= "한국"
@@ -76,10 +78,12 @@ $(document).ready(function(){
     })
     $("#overseas").click(function() {
         if ($("#overseas").css("backgroundColor") == "rgb(255, 255, 255)" || $("#overseas").css("backgroundColor") == "") {
+            console.log("외국 선택");
             $("#overseas").css("backgroundColor", "#4FBA80");
             $("#overseas").css("color", "rgb(255, 255, 255)");
             division += "외국"
         }else {
+            console.log("외국 선택 해제");
             $("#overseas").css("backgroundColor", "rgb(255, 255, 255)");
             $("#overseas").css("color", "rgb(0, 0, 0)");
             division -= "외국"

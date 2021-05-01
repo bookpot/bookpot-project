@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
-
+<!-- 내가 쓴 글/스크랩/댓글 쓴 글 -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>책단지</title>
-    <link rel="stylesheet" href="Home CSS.css">
+    <link rel="stylesheet" href="show CSS.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="Home JS.js"></script>
 </head>
@@ -48,61 +48,11 @@
             <!--로그인 버튼과 눌렀을때 dropdown되는 입력창들 묶음-->
         </header>
         
-        <div id="category">
-            <div id="searching-menu">
-                <img src="icon/search.svg">
-                <label for="searching" class="search">책 찾아보기</label>
-            </div>     
-            <div class="searching-input">
-                <input type="" id="searching" placeholder="찾는 책의 제목/키워드를 입력하세요">
-                <button type="reset">X</button><!--쓴것 초기화 button-->
-            </div>
-            <!--버튼 누르면 색 변하도록 js작업하기-->
-            <div id="filter-menu">
-                <img src="icon/filter.svg">
-                <div class="filter">필터</div>
-            </div>
-            <span class="category-menu">국내/외국</span>
-            <div class="book-from">
-                <button id="domestic" type="button">국내도서</button>
-                <button id="overseas" type="button">외국도서</button>
-            </div>
-            <span class="category-menu">분야</span>
-            <div class="book-type">
-                <button class="field" type="button">예술</button>
-                <button class="field" type="button">소설</button>
-                <button class="field" type="button">역사/문화</button>
-                <button class="field" type="button">인문</button>
-                <button class="field" type="button">비문학</button>
-                <button class="field" type="button">경제/경영</button>
-                <button class="field" type="button">정치</button>
-                <button class="field" type="button">영어</button>
-                <button class="field" type="button">과학</button>
-                <button class="field" type="button">여성학</button>
-                <button class="field" type="button">고전</button> 
-                <button class="field" type="button">자기계발</button> 
-                <button class="field" type="button">취미/실용</button> 
-                <button class="field" type="button">컴퓨터</button> 
-                <button class="field" type="button">어린이</button> 
-                <!--더 적어야함-->
-            </div>
-            <div class="category-action">
-                <button id="filter-search" type="button">찾기</button>
-                <button id="initialize" type="reset">초기화</button> <!--위에서 누른것들 초기화되도록-->
-            </div>
-        </div>
-        
         <!--인기글, 최신순 탭 + 그리드&리스트 뷰-->
-        <div id="array">
-            <div class="content-array">
-                <div class="best array-selected">인기</div>
-                <div class="latest">최신</div>
-            </div>
-            <div class="view-type">
-                <button id="list-view-selected" class="view-type-select"><img src="icon/list_green.svg" id="list-view-icon"></button>
-                <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg" id="grid-view-icon"></button>
-                <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
-            </div>
+        <div class="view-type">
+            <button id="list-view-selected" class="view-type-select"><img src="icon/list_green.svg" id="list-view-icon"></button>
+            <button id="grid-view-selected" class="view-type-select"><img src="icon/grid_black.svg" id="grid-view-icon"></button>
+            <!--따로 버튼 없이 선택하자마자 적용되는 방법은?-->
         </div>
         
         <section class="main">

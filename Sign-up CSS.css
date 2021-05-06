@@ -192,7 +192,8 @@ button {
 
 #id-button,
 #nickname-button,
-#email-button {
+#email-button,
+#email-check-button {
   width: 100px;
   height: 35px;
   border-color: var(--color_highlight);
@@ -202,27 +203,23 @@ button {
   border-width: 1px;
 }
 
-#email-check-button {
-  width: 100px;
-  height: 35px;
-  color: rgb(180, 180, 180);
-  border-style: solid;
-  border-width: 1px;
-  background-color: rgb(240, 240, 240);
-  border-color: rgb(180, 180, 180);
-}
-
 #nickname,
 #id,
-#email,
-#email-check {
+#email {
   width: 400px;
   margin-right: 15px;
 }
+
+#code-check {
+  width: 400px;
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
 #submit-button {
   width: 520px;
   height: 35px;
-  background-color: var(--color_highlight);
+  background-color: #9dbbab;
   color: var(--color_white);
   border-style: none;
 }
@@ -282,7 +279,7 @@ input {
 }
 
 .alert-nickname,
-.alert-email,
+#email-check,
 .alert-code,
 .alert-pwd,
 .alert-pwd2 {

@@ -19,7 +19,11 @@ $(document).ready(function(){
     let categories = []; //선택된 분야 넣을 배열
     let searchResult = ""; //검색 결과 넣을 배열
     let contentNumber; //콘텐츠의 총 갯수 넣을 배열
-    let division = ""; // 국내, 외국 선택
+    let qsDivision = ""; // 국내, 외국 선택
+    let qsSort = "good"; //인기순(default, good), 최신순(date)
+    var resultUrl = "";
+    var qsCategories = "&categories"; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
+    let pageNumber = ""; //페이지 개수(list일 때가 default)
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
         $("body").toggleClass("login-form-show");
@@ -63,30 +67,39 @@ $(document).ready(function(){
     })
     //국내 / 외국 선택
     $("#domestic").click(function() {
-        //선택되었을 때
+        //국내 선택 되었을 때
         if ($("#domestic").css("backgroundColor") == "rgb(255, 255, 255)" || $("#domestic").css("backgroundColor") == "") {
             console.log("국내 선택");
+            //국내 버튼 활성화
             $("#domestic").css("backgroundColor", "#4FBA80");
             $("#domestic").css("color", "rgb(255, 255, 255)");
-            division += "한국"
-        }else {
+            //외국 버튼 비활성화
+            $("#overseas").css("backgroundColor", "rgb(255, 255, 255)");
+            $("#overseas").css("color", "rgb(0, 0, 0)");
+            qsDivision = "한국"
+        }else { //한 번 더 선택했을 때
             console.log("국내 선택 해제");
             $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
             $("#domestic").css("color", "rgb(0, 0, 0)");
-            division -= "한국"
+            qsDivision = ""
         }
     })
     $("#overseas").click(function() {
+        //외국 선택 되었을 때
         if ($("#overseas").css("backgroundColor") == "rgb(255, 255, 255)" || $("#overseas").css("backgroundColor") == "") {
             console.log("외국 선택");
+            //외국 버튼 활성화
             $("#overseas").css("backgroundColor", "#4FBA80");
             $("#overseas").css("color", "rgb(255, 255, 255)");
-            division += "외국"
-        }else {
+            //국내 버튼 비활성화
+            $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
+            $("#domestic").css("color", "rgb(0, 0, 0)");
+            qsDivision = "외국"
+        }else {//한 번 더 선택했을 때
             console.log("외국 선택 해제");
             $("#overseas").css("backgroundColor", "rgb(255, 255, 255)");
             $("#overseas").css("color", "rgb(0, 0, 0)");
-            division -= "외국"
+            qsDivision = ""
         }
     })
 
@@ -111,13 +124,21 @@ $(document).ready(function(){
     
     //초기화 눌렀을 때 -> 선택된 배열 없게끔
     $("#initialize").click(function(){
+        //선택된 배열 초기화
         categories = [];
+        //국내 버튼 선택 해제
+        $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
+        $("#domestic").css("color", "rgb(0, 0, 0)");
+        //해외 버튼 선택 해제
+        $("#overseas").css("backgroundColor", "rgb(255, 255, 255)");
+        $("#overseas").css("color", "rgb(0, 0, 0)");
+        //분야 버튼 선택 해제
+        $(".field").css("backgroundColor", "rgb(255, 255, 255)");
+        $(".field").css("color", "rgb(0, 0, 0)");
     })
     
     //찾기 눌렀을 때
     $("#filter-search").click(function() {
-        var resultUrl = "";
-        var qsCategories = "&categories"; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
         //분야 중 선택된 게 없을 때
         for (let index = 0; index < categories.length - 1; index++) {
             qsCategories += categories[index] + ",";
@@ -125,45 +146,13 @@ $(document).ready(function(){
         if (categories.length > 0) {
             qsCategories += categories[categories.length - 1];
         }
-        resultUrl += "/writing/search?keyword=&division=" + division + qsCategories + "&sort=good";
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good";
         console.log(resultUrl);
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : function(data) {
-                $(".grid-view").empty();
-                $(".list-view").empty();
-                searchResult = data;
-                contentNumber = searchResult.writing.length;
-                let gridContent = "";
-                let listContent = "";
-                for (let index = 0; index < contentNumber; index++) {
-                    let likeIcon = '<img src="icon/like_white.svg">\n';
-                    let scrapIcon = '<img src="icon/scrap_white.svg"';
-                    if (searchResult.writing[index].isGood == true) {
-                        likeIcon = '<img src="icon/like_green.svg">\n';
-                    }
-                    if (searchResult.writing[index].isScrap == true) {
-                        scrapIcon = '<img src="icon/scrap_green.svg"';
-                    }
-                    gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">\n' + scrapIcon + 'class="scrap-icon">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
-                    gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
-                    gridContent += '<div class="grid-book-info">\n<h1 class="grid-content-title">' + searchResult.writing[index].title + '</h1>\n';
-                    gridContent += '<h3 class="grid-book-title">' + searchResult.writing[index].booktitle + '</h3>\n';
-                    gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n';
-                    gridContent += '<div class="write-info">\n<div class="register-profile">\n<img src="' + searchResult.writing[index].userimg + '" >\n';
-                    gridContent += '<span class="profile-nickname">' + searchResult.writing[index].nickname + '</span>\n</div>';
-                    gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>\n';
-
-                    listContent += '<div class="list-view-content">\n<div class="list-content-number">' + index+1 + '</div>\n';
-                    listContent += '<div class="list-content-title">' + searchResult.writing[index].title + '</div>\n';
-                    listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
-                    listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
-                    listContent += '<div class="list-register-date">' + searchResult.writing[index].regDate + '</div>\n</div>\n';
-                }
-                $("#grid-view").append(gridContent);
-            }
+            success : showResult(data)
         })
     })
 
@@ -171,17 +160,35 @@ $(document).ready(function(){
     $(".best").click(function() {
         $(".best").toggleClass("array-selected");
         $(".latest").removeClass("array-selected");
+        qsSort = "good"
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good";
+        $.ajax({
+            url : resultUrl,
+            type : "get",
+            dataType : "json",
+            success : showResult(data)
+        })
     })
     $(".latest").click(function() {
         $(".latest").toggleClass("array-selected");
         $(".best").removeClass("array-selected");
+        qsSort = "date";
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date"
+        $.ajax({
+            url : resultUrl,
+            type : "get",
+            dataType : "json",
+            success : showResult(data)
+        })
     })
 
     //scrap 아이콘
     $(".scrap-icon").click(function() {
         var contentIndex = $(".scrap-icon").index(this); //클릭된 콘텐츠의 인덱스
+        console.log("클릭된 콘텐츠의 인덱스 : " + contentIndex);
         let contentId = searchResult.writing[contentIndex].no; //콘텐츠의 고유 번호
         var clickScrap = $(".scrap-icon:eq(" + contentIndex + ")");
+        console.log(clickScrap.attr("src"));
         //스크랩 추가
         if (clickScrap.attr("src") == "icon/scrap_white.svg") { 
             clickScrap.attr("src", "icon/scrap_green.svg");
@@ -190,12 +197,79 @@ $(document).ready(function(){
                 type : "post",
             })
         } else { //스크랩 삭제
+            clickScrap.attr("src", "icon/scrap_white.svg");
             $.ajax ({
                 url : "/writings/" + contentId + "/scrap",
                 type : "delete",
             })
         }
     })
+
+    //좋아요 아이콘
+    $(".like-icon").click(function() {
+        var contentIndex = $(".like-icon").index(this); //클릭된 콘텐츠의 인덱스
+        console.log("클릭된 콘텐츠의 인덱스 : " + contentIndex);
+        let contentId = searchResult.writing[contentIndex].no; //콘텐츠의 고유 번호
+        var clickLike = $(".like-icon:eq(" + contentIndex + ")");
+        console.log(clickLike.attr("src"));
+        //좋아요 추가
+        if (clickLike.attr("src") == "icon/like_white.svg") { 
+            clickLike.attr("src", "icon/like_green.svg");
+            $.ajax ({
+                url : "/writings/" + contentId + "/good",
+                type : "post",
+            })
+        } else { //좋아요 삭제
+            clickLike.attr("src", "icon/like_white.svg");
+            $.ajax ({
+                url : "/writings/" + contentId + "/good",
+                type : "delete",
+            })
+        }
+    })
+
+    function showResult(data) {
+        $("#grid-view").empty();
+        $("#list-view").empty();
+        $("#page").empty();
+        searchResult = data;
+        contentNumber = searchResult.writing.length;
+        let gridPage = Math.cell(contentNumber / 9);
+        let listPage = Math.cell(contentNumber / 12);
+        let gridContent = ""; //grid 콘텐츠 들어갈 공간
+        let listContent = ""; //list 콘텐츠 들어갈 공간
+        let page = "" //page 번호들 들어갈 공간
+        for (let index = 0; index < contentNumber; index++) {
+            let likeIcon = '<img src="icon/like_white.svg">\n';
+            let scrapIcon = '<img src="icon/scrap_white.svg"';
+            if (searchResult.writing[index].isGood == true) {
+                likeIcon = '<img src="icon/like_green.svg">\n';
+            }
+            if (searchResult.writing[index].isScrap == true) {
+                scrapIcon = '<img src="icon/scrap_green.svg"';
+            }
+            gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">\n' + scrapIcon + 'class="scrap-icon">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
+            gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
+            gridContent += '<div class="grid-book-info">\n<h1 class="grid-content-title">' + searchResult.writing[index].title + '</h1>\n';
+            gridContent += '<h3 class="grid-book-title">' + searchResult.writing[index].booktitle + '</h3>\n';
+            gridContent += '<p class="summary">' + searchResult.writing[index].content + '</p>\n</div>\n';
+            gridContent += '<div class="write-info">\n<div class="register-profile">\n<img src="' + searchResult.writing[index].userimg + '" >\n';
+            gridContent += '<span class="profile-nickname">' + searchResult.writing[index].nickname + '</span>\n</div>';
+            gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>\n';
+
+            listContent += '<div class="list-view-content">\n<div class="list-content-number">' + index+1 + '</div>\n';
+            listContent += '<div class="list-content-title">' + searchResult.writing[index].title + '</div>\n';
+            listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
+            listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
+            listContent += '<div class="list-register-date">' + searchResult.writing[index].regDate + '</div>\n</div>\n';
+        }
+        for (let index = 1; index <= pageNumber; index++) {
+            page += '<div class="page-number">'+ index +'</div>'
+        }
+        $("#grid-view").append(gridContent);
+        $("#list-view").append(listContent);
+        $("#page").append(page);
+    }
 })
 
 function showLoginError() {

@@ -579,7 +579,7 @@ header nav #write-button {
   padding-right: var(--padding_lsit-view-content-right);
 }
 
-.page {
+#page {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   display: flex;
@@ -587,6 +587,6 @@ header nav #write-button {
   margin: auto;
 }
 
-.page .page-number {
+#page .page-number {
   width: 20px;
 }

@@ -23,7 +23,15 @@ $(document).ready(function(){
     let qsSort = "good"; //인기순(default, good), 최신순(date)
     var resultUrl = "";
     var qsCategories = "&categories"; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
-    let pageNumber = ""; //페이지 개수(list일 때가 default)
+    let nowPage = "1";
+    //전체 화면 보여주기
+    resultUrl += "/writing/search?keyword=&division=&categories=&sort=good&page=1";
+    $.ajax({
+        url : resultUrl,
+        type : "get",
+        dataType : "json",
+        success : showResult(data)
+    })
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
         $("body").toggleClass("login-form-show");
@@ -146,7 +154,7 @@ $(document).ready(function(){
         if (categories.length > 0) {
             qsCategories += categories[categories.length - 1];
         }
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good";
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=1";
         console.log(resultUrl);
         $.ajax({
             url : resultUrl,
@@ -161,7 +169,7 @@ $(document).ready(function(){
         $(".best").toggleClass("array-selected");
         $(".latest").removeClass("array-selected");
         qsSort = "good"
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good";
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
@@ -173,7 +181,7 @@ $(document).ready(function(){
         $(".latest").toggleClass("array-selected");
         $(".best").removeClass("array-selected");
         qsSort = "date";
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date"
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
@@ -190,14 +198,14 @@ $(document).ready(function(){
         var clickScrap = $(".scrap-icon:eq(" + contentIndex + ")");
         console.log(clickScrap.attr("src"));
         //스크랩 추가
-        if (clickScrap.attr("src") == "icon/scrap_white.svg") { 
-            clickScrap.attr("src", "icon/scrap_green.svg");
+        if (clickScrap.attr("src") == "/resources/icon/scrap_white.svg") { 
+            clickScrap.attr("src", "/resources/icon/scrap_green.svg");
             $.ajax ({
                 url : "/writings/" + contentId + "/scrap",
                 type : "post",
             })
         } else { //스크랩 삭제
-            clickScrap.attr("src", "icon/scrap_white.svg");
+            clickScrap.attr("src", "/resources/icon/scrap_white.svg");
             $.ajax ({
                 url : "/writings/" + contentId + "/scrap",
                 type : "delete",
@@ -213,19 +221,31 @@ $(document).ready(function(){
         var clickLike = $(".like-icon:eq(" + contentIndex + ")");
         console.log(clickLike.attr("src"));
         //좋아요 추가
-        if (clickLike.attr("src") == "icon/like_white.svg") { 
-            clickLike.attr("src", "icon/like_green.svg");
+        if (clickLike.attr("src") == "/resources/icon/like_white.svg") { 
+            clickLike.attr("src", "/resources/icon/like_green.svg");
             $.ajax ({
                 url : "/writings/" + contentId + "/good",
                 type : "post",
             })
         } else { //좋아요 삭제
-            clickLike.attr("src", "icon/like_white.svg");
+            clickLike.attr("src", "/resources/icon/like_white.svg");
             $.ajax ({
                 url : "/writings/" + contentId + "/good",
                 type : "delete",
             })
         }
+    })
+
+    $(".page-number").click(function() {
+        let clickPage = $(".page-number").index(this);
+        nowPage = clickPage.text();
+        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
+        $.ajax({
+            url : resultUrl,
+            type : "get",
+            dataType : "json",
+            success : showResult(data)
+        })
     })
 
     function showResult(data) {
@@ -234,19 +254,18 @@ $(document).ready(function(){
         $("#page").empty();
         searchResult = data;
         contentNumber = searchResult.writing.length;
-        let gridPage = Math.cell(contentNumber / 9);
-        let listPage = Math.cell(contentNumber / 12);
+        let pageNumber = Math.cell(contentNumber / 9);
         let gridContent = ""; //grid 콘텐츠 들어갈 공간
         let listContent = ""; //list 콘텐츠 들어갈 공간
         let page = "" //page 번호들 들어갈 공간
         for (let index = 0; index < contentNumber; index++) {
-            let likeIcon = '<img src="icon/like_white.svg">\n';
-            let scrapIcon = '<img src="icon/scrap_white.svg"';
+            let likeIcon = '<img src="/resources/icon/like_white.svg">\n';
+            let scrapIcon = '<img src="/resources/icon/scrap_white.svg"';
             if (searchResult.writing[index].isGood == true) {
-                likeIcon = '<img src="icon/like_green.svg">\n';
+                likeIcon = '<img src="/resources/icon/like_green.svg">\n';
             }
             if (searchResult.writing[index].isScrap == true) {
-                scrapIcon = '<img src="icon/scrap_green.svg"';
+                scrapIcon = '<img src="/resources/icon/scrap_green.svg"';
             }
             gridContent += '<div class="grid-view-content">\n<div class="grid-view-content-img">\n' + scrapIcon + 'class="scrap-icon">' + '<img src=' + searchResult.writing[index].bookimg + ' alt="book image">\n</div>\n';
             gridContent += '<div class="grid-view-content-like">' + likeIcon + '<span class="like-number">' + searchResult.writing[index].goodCnt + '</span>\n</div>\n';                    
@@ -257,7 +276,7 @@ $(document).ready(function(){
             gridContent += '<span class="profile-nickname">' + searchResult.writing[index].nickname + '</span>\n</div>';
             gridContent += '<span class="register-date">' + searchResult.writing[index].regDate + '</span>\n</div>\n';
 
-            listContent += '<div class="list-view-content">\n<div class="list-content-number">' + index+1 + '</div>\n';
+            listContent += '<div class="list-view-content">\n<div class="list-content-number">' + searchResult.writing[index].idx + '</div>\n';
             listContent += '<div class="list-content-title">' + searchResult.writing[index].title + '</div>\n';
             listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
             listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
@@ -285,12 +304,12 @@ function showLoginError() {
 listViewSelected.addEventListener("click", function(){
     let listViewIcon = document.getElementById('list-view-icon');
     let gridViewIcon = document.getElementById("grid-view-icon");
-    listViewIcon.src = "icon/list_green.svg";
-    gridViewIcon.src = "icon/grid_black.svg";
+    listViewIcon.src = "/resources/icon/list_green.svg";
+    gridViewIcon.src = "/resources/icon/grid_black.svg";
     listView.style.display = "flex"; gridView.style.display = "none" });
 gridViewSelected.addEventListener("click", function(){
     let listViewIcon = document.getElementById('list-view-icon');
     let gridViewIcon = document.getElementById("grid-view-icon");
-    listViewIcon.src = "icon/list_black.svg";
-    gridViewIcon.src = "icon/grid_green.svg";
+    listViewIcon.src = "/resources/icon/list_black.svg";
+    gridViewIcon.src = "/resources/icon/grid_green.svg";
     listView.style.display = "none"; gridView.style.display = "flex" });

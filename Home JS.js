@@ -25,12 +25,14 @@ $(document).ready(function(){
     var qsCategories = "&categories"; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
     let nowPage = "1";
     //전체 화면 보여주기
-    resultUrl += "/writing/search?keyword=&division=&categories=&sort=good&page=1";
+    resultUrl = "/writings/search?keyword=&division=&categories=&sort=good&page=1";
     $.ajax({
         url : resultUrl,
         type : "get",
         dataType : "json",
-        success : showResult(data)
+        success : function(data) {
+            showResult(data)
+        }
     })
     // 로그인 창 띄우고&닫기
     $(".login").click(function(){
@@ -134,6 +136,7 @@ $(document).ready(function(){
     $("#initialize").click(function(){
         //선택된 배열 초기화
         categories = [];
+        qsCategories = [];
         //국내 버튼 선택 해제
         $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
         $("#domestic").css("color", "rgb(0, 0, 0)");
@@ -147,6 +150,7 @@ $(document).ready(function(){
     
     //찾기 눌렀을 때
     $("#filter-search").click(function() {
+        qsCategories = []; //url로 보낼 카테고리 초기화(이중으로 담기는 것을 방지)
         //분야 중 선택된 게 없을 때
         for (let index = 0; index < categories.length - 1; index++) {
             qsCategories += categories[index] + ",";
@@ -154,13 +158,15 @@ $(document).ready(function(){
         if (categories.length > 0) {
             qsCategories += categories[categories.length - 1];
         }
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=1";
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=1";
         console.log(resultUrl);
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : showResult(data)
+            success : function(data) {
+                showResult(data)
+            }
         })
     })
 
@@ -169,24 +175,28 @@ $(document).ready(function(){
         $(".best").toggleClass("array-selected");
         $(".latest").removeClass("array-selected");
         qsSort = "good"
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : showResult(data)
+            success : function(data) {
+                showResult(data)
+            }
         })
     })
     $(".latest").click(function() {
         $(".latest").toggleClass("array-selected");
         $(".best").removeClass("array-selected");
         qsSort = "date";
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : showResult(data)
+            success : function(data) {
+                showResult(data)
+            }
         })
     })
 
@@ -239,12 +249,14 @@ $(document).ready(function(){
     $(".page-number").click(function() {
         let clickPage = $(".page-number").index(this);
         nowPage = clickPage.text();
-        resultUrl += "/writing/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
             dataType : "json",
-            success : showResult(data)
+            success : function(data) {
+                showResult(data)
+            }
         })
     })
 

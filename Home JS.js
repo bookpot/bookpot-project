@@ -26,6 +26,22 @@ $(document).ready(function(){
     let nowPage = "1";
     //전체 화면 보여주기
     resultUrl = "/writings/search?keyword=&division=&categories=&sort=good&page=1";
+    $(".site-name").click(function() {
+        resultUrl = "/writings/search?keyword=&division=&categories=&sort=good&page=1";
+        nowPage = "1";
+        //선택된 배열 초기화
+        categories = [];
+        qsCategories = [];
+        //국내 버튼 선택 해제
+        $("#domestic").css("backgroundColor", "rgb(255, 255, 255)");
+        $("#domestic").css("color", "rgb(0, 0, 0)");
+        //해외 버튼 선택 해제
+        $("#overseas").css("backgroundColor", "rgb(255, 255, 255)");
+        $("#overseas").css("color", "rgb(0, 0, 0)");
+        //분야 버튼 선택 해제
+        $(".field").css("backgroundColor", "rgb(255, 255, 255)");
+        $(".field").css("color", "rgb(0, 0, 0)");
+    })
     $.ajax({
         url : resultUrl,
         type : "get",
@@ -172,8 +188,11 @@ $(document).ready(function(){
 
     //인기순, 최신순
     $(".best").click(function() {
-        $(".best").toggleClass("array-selected");
-        $(".latest").removeClass("array-selected");
+        if ($(".latest").is(".array-selected")) {
+            console.log("인기순으로 전환");            
+            $(".best").toggleClass("array-selected");
+            $(".latest").removeClass("array-selected");
+        }
         qsSort = "good"
         resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=" + nowPage;
         $.ajax({
@@ -186,8 +205,10 @@ $(document).ready(function(){
         })
     })
     $(".latest").click(function() {
-        $(".latest").toggleClass("array-selected");
-        $(".best").removeClass("array-selected");
+        if ($(".best").is(".array-selected")) {
+            $(".latest").toggleClass("array-selected");
+            $(".best").removeClass("array-selected");
+        }
         qsSort = "date";
         resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
@@ -293,6 +314,12 @@ $(document).ready(function(){
             listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
             listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
             listContent += '<div class="list-register-date">' + searchResult.writing[index].regDate + '</div>\n</div>\n';
+        }
+        if (searchResult.paging.preBtn == "true") {
+            $("#pre-button").show;
+        }
+        if (searResult.paging.nextBtn == "false") {
+            $("pre-button").show;
         }
         for (let index = 1; index <= pageNumber; index++) {
             page += '<div class="page-number">'+ index +'</div>'

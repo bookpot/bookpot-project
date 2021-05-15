@@ -93,7 +93,8 @@ $('#password-2').blur(function() {
 $('#submit-button').prop("disabled", true);
 
 
-//회원가입 버튼 활성화 조건*/
+
+/*회원가입 버튼 활성화 조건*/
 $('#password-2').blur(function() {
     if (nicknameCheck.test($('#nickname').val())&&
     emailCheck.test($('#email').val())&&
@@ -103,15 +104,18 @@ $('#password-2').blur(function() {
     
     {   //조건 충족시 버튼 활성화 & 버튼색 변경
         $('#submit-button').prop("disabled", false);
-        $('#submit-button').css("backgroundcolor", "#0f9b6b");
-
-        // 제출버튼 클릭하면 회원가입 완료페이지로 이동
-        $('#submit-button').click(function() {
-            location.href=('Sign-up complete HTML.html');
-            console.log("true");
-
-        });
+        $('#submit-button').css("background-color", "#0f9b6b");
     }
 
 
     });
+
+    // 제출버튼 클릭하면 회원가입 완료페이지로 이동
+        $('#submit-button').click(function() {
+            /*if (('#submit-button').prop("disabled", false))*/
+            {location.href='Sign-up complete HTML.html';
+            console.log("true");
+            }
+    });
+
+

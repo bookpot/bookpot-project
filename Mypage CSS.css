@@ -353,6 +353,11 @@ input {
   display: none;
 }
 
+/*회원탈퇴 버튼 숨겨놓기*/
+#withdrawal-button {
+  display: none;
+}
+
 /*적용, 취소버튼 세트*/
 .upload-buttons {
   display: none;

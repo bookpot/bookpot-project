@@ -142,6 +142,10 @@ $(document).ready( function() {
         $('#password-2-set').show();
 
         $('#nickname-info').css('font-weight', 'normal');
+
+
+        /*회원 탈퇴 버튼 보이기*/
+        $('#withdrawal-button').show();
                 
     
     });

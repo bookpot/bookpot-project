@@ -315,14 +315,18 @@ header nav #write-button {
   background-color: var(--color_white);
 }
 #category #searching-input .search-relate{
+  display: flex;
   position: absolute;
   top: 39px;
+  flex-direction: column;
+  gap: 5px;
   width: 300px;
   border: 1px solid var(--color_black);
   border-top: 1px solid var(--color_gray);
   padding: 8px;
   background-color: var(--color_white);
 }
+
 
 #category #filter-menu {
   display: flex;

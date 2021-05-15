@@ -22,7 +22,7 @@ $(document).ready(function(){
     let qsDivision = ""; // 국내, 외국 선택
     let qsSort = "good"; //인기순(default, good), 최신순(date)
     var resultUrl = "";
-    var qsCategories = "&categories"; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
+    var qsCategories = []; //url로 보낼 때 카테고리에 선택된 분야에 대한 배열을 넣기 위한 변수
     let nowPage = "1";
     //전체 화면 보여주기
     resultUrl = "/writings/search?keyword=&division=&categories=&sort=good&page=1";
@@ -174,7 +174,7 @@ $(document).ready(function(){
         if (categories.length > 0) {
             qsCategories += categories[categories.length - 1];
         }
-        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=1";
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + "&categories" + qsCategories + "&sort=good" + "&page=1";
         console.log(resultUrl);
         $.ajax({
             url : resultUrl,
@@ -194,7 +194,7 @@ $(document).ready(function(){
             $(".latest").removeClass("array-selected");
         }
         qsSort = "good"
-        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=good" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + "&categories" + qsCategories + "&sort=good" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
@@ -210,7 +210,7 @@ $(document).ready(function(){
             $(".best").removeClass("array-selected");
         }
         qsSort = "date";
-        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + "&categories" + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
@@ -270,7 +270,7 @@ $(document).ready(function(){
     $(".page-number").click(function() {
         let clickPage = $(".page-number").index(this);
         nowPage = clickPage.text();
-        resultUrl = "/writings/search?keyword=&division=" + qsDivision + qsCategories + "&sort=date" + "&page=" + nowPage;
+        resultUrl = "/writings/search?keyword=&division=" + qsDivision + "&categories" + qsCategories + "&sort=date" + "&page=" + nowPage;
         $.ajax({
             url : resultUrl,
             type : "get",
@@ -314,6 +314,8 @@ $(document).ready(function(){
             listContent += '<div class="list-book-title">' + searchResult.writing[index].booktitle + '</div>\n';
             listContent += '<div class="list-profile-nickname">' + searchResult.writing[index].nickname + '</div>\n';
             listContent += '<div class="list-register-date">' + searchResult.writing[index].regDate + '</div>\n</div>\n';
+            $("#grid-view").append(gridContent);
+            $("#list-view").append(listContent);
         }
         if (searchResult.paging.preBtn == "true") {
             $("#pre-button").show;
@@ -324,8 +326,6 @@ $(document).ready(function(){
         for (let index = 1; index <= pageNumber; index++) {
             page += '<div class="page-number">'+ index +'</div>'
         }
-        $("#grid-view").append(gridContent);
-        $("#list-view").append(listContent);
         $("#page").append(page);
     }
 })

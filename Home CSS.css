@@ -295,6 +295,7 @@ header nav #write-button {
   font-size: var(--size_menu);
 }
 #category #searching-input {
+  position: relative;
   font-size: var(--size_button);
 }
 
@@ -314,8 +315,8 @@ header nav #write-button {
   background-color: var(--color_white);
 }
 #category #searching-input .search-relate{
-  position: relative;
-  top: -1px;
+  position: absolute;
+  top: 39px;
   width: 300px;
   border: 1px solid var(--color_black);
   border-top: 1px solid var(--color_gray);
@@ -600,6 +601,7 @@ header nav #write-button {
   display: flex;
   flex-direction: row;
   margin: auto;
+  cursor: pointer;
 }
 #page-box #page {
   display: flex;

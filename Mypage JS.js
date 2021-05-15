@@ -165,9 +165,12 @@ $(document).ready( function() {
             $('#password-set').hide();
             $('#password-2-set').hide();
             $('#nickname-info').css('font-weight', 'bold');
+            $('#withdrawal-button').hide();
 
             console.log($('#pwd-button').is('disabled'));
         $("#nickname-info").prop("disabled", true);
+
+
     
         });
     

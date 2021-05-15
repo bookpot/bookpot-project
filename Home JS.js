@@ -287,7 +287,6 @@ $(document).ready(function(){
         $("#page").empty();
         searchResult = data;
         contentNumber = searchResult.writing.length;
-        let pageNumber = Math.cell(contentNumber / 9);
         let gridContent = ""; //grid 콘텐츠 들어갈 공간
         let listContent = ""; //list 콘텐츠 들어갈 공간
         let page = "" //page 번호들 들어갈 공간
@@ -323,7 +322,7 @@ $(document).ready(function(){
         if (searResult.paging.nextBtn == "false") {
             $("pre-button").show;
         }
-        for (let index = 1; index <= pageNumber; index++) {
+        for (let index = 1; index <= searchResult.pageNum.length; index++) {
             page += '<div class="page-number">'+ index +'</div>'
         }
         $("#page").append(page);

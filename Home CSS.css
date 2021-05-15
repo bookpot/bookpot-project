@@ -356,6 +356,7 @@ header nav #write-button {
   padding-bottom: 20px;
   border-bottom: 1px solid var(--color_black);
   font-size: var(--size_button);
+  cursor: pointer;
 }
 
 #category .book-from button {
@@ -380,6 +381,7 @@ header nav #write-button {
   padding: 11px 10px;
   margin: 4px 0px;
   background-color: var(--color_white);
+  cursor: pointer;
 } 
 
 #category .book-type .field-selected{
@@ -399,6 +401,7 @@ header nav #write-button {
   color: var(--color_white);
   border: 1px solid var(--color_black);
   background-color: var(--color_highlight);
+  cursor: pointer;
 }
 
 #category .category-action #initialize {
@@ -406,6 +409,7 @@ header nav #write-button {
   height: 40px;
   border: 1px solid var(--color_black);
   background-color: rgb(0, 0, 0, 0.08);
+  cursor: pointer;
 }
 
 /*콘텐츠 영역*/
@@ -538,7 +542,7 @@ header nav #write-button {
 
 }
 
-#list-view .classification {
+.list-classification {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -550,19 +554,19 @@ header nav #write-button {
   font-size: var(--size_list-view);
 }
 
-#list-view .classification .content-number{
+.list-classification .content-number{
   width: 60px;
 }
 
-#list-view .classification .classification-content-title {
+.list-classification .classification-content-title {
   width: var(--width_list-view-content-title);
 }
 
-#list-view .classification .classification-book-title {
+.list-classification .classification-book-title {
   width: var(--width_list-view-book-title);
 }
 
-#list-view .classification .classification-profile-nickname {
+.list-classification .classification-profile-nickname {
   width: var(--width_list-view-profile-nickname);
 }
 

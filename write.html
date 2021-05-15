@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookpot Write Page</title>
     <link rel="stylesheet" href="./write.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./write2.js"></script>
 </head>
 
 <body>
@@ -18,10 +20,10 @@
             </button>
         </a>
         <div class="header-right">
-            <button type="button">Logout</button>
+            <button type="button" class="logout">로그인</button>
+            <button type="button" class="mypage">마이페이지</button>
             <button type="button">
                 <img src="./profile.png" alt="profile-img">
-                <!--임시로 아무 사진이나 일단 넣었습니다-->
             </button>
         </div>
     </div>
@@ -43,25 +45,70 @@
                 <label for="book-publish">출판사 :</label>
                 <input type="text" id="book-publish">
             </div>
-            <label for="book-type" class="label">분야 :</label>
-            <!--원래 input식이었는데 선택하도록 바꿔야할듯-->      
-
+            <div class="select-option1">
+                <span class="select1">국내/해외 :</span>
+                <form class="radio">
+                    <input type="radio" name="radio" value="" id="domestic"/>
+                    <label for="domestic" class="label-1">국내도서</label>  
+                    <input type="radio" name="radio" value="" id="foreign"/>
+                    <label for="foreign" class="label-1">해외도서</label>
+                </form>
+            </div>
+            <div class="select-option2">
+                <span class="select2">분야 :</span>
+                <form class="checkbox">
+                    <label for="art" class="label">예술</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="1" id="art"/>
+                    <label for="novel" class="label">소설</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="2" id="novel"/>
+                    <label for="history" class="label">역사/문화</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="3" id="history"/>
+                    <label for="human" class="label">인문</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="human"/>
+                    <label for="nonfiction" class="label">비문학</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="nonfiction"/>
+                    <label for="economy" class="label">경제/경영</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="economy"/>
+                    <label for="politics" class="label">정치</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="politics"/>
+                    <label for="english" class="label">영어</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="english"/>
+                    <label for="science" class="label">과학</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="science"/>
+                    <label for="feminism" class="label">여성학</label onclick="countChecked(); changeColorCheck();)">
+                    <input type="checkbox" name="select-2" value="" id="feminism"/>
+                    <label for="classic" class="label">고전</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="classic"/>
+                    <label for="improve" class="label">자기계발</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="improve"/>
+                    <label for="hobby" class="label">취미/실용</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="hobby"/>
+                    <label for="computer" class="label">컴퓨터</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="computer"/>
+                    <label for="child" class="label">어린이</label onclick="countChecked(); changeColorCheck();">
+                    <input type="checkbox" name="select-2" value="" id="child"/>
+                </form>
+            </div>
         </div>
         <div class="content">
-            <input type="text" placeholder="제목을 입력하세요">
-            <textarea placeholder="# 태그를 입력하세요 (최대 10개)" id="tag" onkeydown="enterTag()"></textarea>
-        
+            <input type="text" placeholder="제목을 입력하세요" id="title">
+            <textarea placeholder="# 태그를 입력하세요 (최대 10개)" id="tag"></textarea>
+            <tag></tag>
             <!--<div class="plus-button-2">-->
             <div class="plus-1">
                 <button type="button" id="plus-button-1" onclick="doDisplay1()">
                     <img src="./plus.svg" alt="icon">
                 </button>
-                <h4>읽은 기간</h4>       
+                <button type="button" id="minus-button-1" onclick="doDisplay1()">
+                    <img src="./minus.svg" alt="icon">
+                </button>
+                <h4>읽은 기간</h4>          
             </div>
+            
             <div class="period">
                 <label for="first-date">시작일: </label>
-                <form>     
-                    <input type="text" placeholder="YYMMDD" id="first-date"> 
+                <form id="firstDate">     
+                    <input type="text" placeholder="YYMMDD" id="first-date" name="first-date"> 
                 </form>
                 <span>~</span>
                 <label for="last-date">종료일: </label>
@@ -73,20 +120,23 @@
                 <button type="button" id="plus-button-2" onclick="doDisplay2()">
                     <img src="./plus.svg" alt="icon">
                 </button>
+                <button type="button" id="minus-button-2" onclick="doDisplay2()">
+                    <img src="./minus.svg" alt="icon">
+                </button>
                 <h4>인상깊은 구절</h4>
             </div>
             <form class="highlight">     
-                <textarea placeholder="책을 읽으며 감명받았던 순간을 기록해보세요"></textarea>  
+                <textarea placeholder="책을 읽으며 감명받았던 순간을 기록해보세요" id="highlight" value=""></textarea>  
             </form>
-            <textarea placeholder="감상을 자유롭게 적어보세요" class="text-area"></textarea>
+            <textarea placeholder="감상을 자유롭게 적어보세요" class="text-area" id="maintext"></textarea>
         </div>
 
         <form class="write-buttons">
             <button type="submit" id="save-button">임시저장</button>
-            <button type="submit" id="submit-button">발행</button>
+            <button type="submit" id="send-button" form="post">발행</button>
         </form>
     </div>
-    <script src="./write.js"></script>
+    
 </body>
 
 </html>
